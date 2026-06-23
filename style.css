@@ -412,7 +412,7 @@ h2 { margin: 0; font-size: clamp(28px, 4vw, 48px); line-height: 1.25; text-align
     position: relative; 
     width: 100%; 
     background-color: #000; 
-    background-image: linear-gradient(to bottom, rgba(4, 12, 18, 0.75), rgba(4, 12, 18, 0.9)), url('./images/Gemini/Gemini_Generated_Image_ppyq0qppyq0qppyq.jpg'); 
+    background-image: linear-gradient(to bottom, rgba(4, 12, 18, 0.6), rgba(4, 12, 18, 0.7)), url('./images/Gemini/Gemini_Generated_Image_ppyq0qppyq0qppyq.jpg'); 
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat; 
@@ -428,7 +428,7 @@ h2 { margin: 0; font-size: clamp(28px, 4vw, 48px); line-height: 1.25; text-align
 /* ==========================================================================
    9. History Timeline 
    ========================================================================== */
-#history-timeline { width: 100%; max-width: 1200px; margin: 0 auto; padding: 120px 20px 50px; position: relative; color: var(--text); background: var(--bg); }
+ #history-timeline { width: 100%; max-width: 1200px; margin: 0 auto; padding: 120px 20px 50px; position: relative; color: var(--text);}    /* background: var(--bg);   */
 .timeline-main-title { text-align: center; font-family: var(--font-serif); font-size: clamp(36px, 5vw, 56px); margin-bottom: 20px; letter-spacing: 5px; text-shadow: 0 0 30px rgba(255, 255, 255, 0.1); color: var(--accent); }
 .timeline-container { position: relative; width: 100%; min-height: 800px; margin-top: 60px; }
 .timeline-container::before { content: ''; position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: rgba(255, 255, 255, 0.1); }
@@ -556,7 +556,7 @@ h2 { margin: 0; font-size: clamp(28px, 4vw, 48px); line-height: 1.25; text-align
 /* ==========================================================================
    12. Xingda & Qieding Sections (The Solution & Pushback)
    ========================================================================== */
-.xingda-section, .qieding-section { height: 500vh; position: relative; width: 100%; background-color: var(--bg2); background-image: linear-gradient(to bottom, rgba(4, 12, 18, 0.95), rgba(4, 12, 18, 0.8)), url('./images/ChatGPT/ChatGPT\ Image\ 2026年6月11日\ 下午01_31_27_黃昏中的船塭與城市天際線.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; }
+.xingda-section, .qieding-section { height: 500vh; position: relative; width: 100%; background-color: var(--bg2); background-image: linear-gradient(to bottom, rgba(4, 12, 18, 0.8), rgba(4, 12, 18, 0.6)), url('./images/ChatGPT/ChatGPT\ Image\ 2026年6月11日\ 下午01_31_27_黃昏中的船塭與城市天際線.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; }
 .xingda-sticky, .qieding-sticky { position: sticky; top: 0; height: 100vh; width: 100%; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 15vh; }
 .xingda-heading, .qieding-heading { font-family: var(--font-serif); font-size: clamp(32px, 5vw, 50px); color: var(--accent); margin-bottom: 2rem; text-shadow: 0 4px 20px rgba(0,0,0,0.8); text-align: center; opacity: 0; }
 .qieding-heading { color: var(--danger); text-shadow: 0 0 30px rgba(201, 59, 43, 0.4), 0 4px 20px rgba(0,0,0,0.8); }
