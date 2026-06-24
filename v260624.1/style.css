@@ -1,0 +1,874 @@
+/* ==========================================================================
+   1. Root Variables & Global Resets
+   ========================================================================== */
+:root {
+    --bg: #07151d;
+    --bg2: #0d2430;
+    --panel: rgba(11, 24, 34, 0.78);
+    --panel-2: rgba(255, 255, 255, 0.05);
+    --text: #F3F4F6;
+    --muted: #9CA3AF;
+    --line: rgba(255,255,255,0.12);
+    --accent: #FF6B00; 
+    --accent2: #f59e0b;
+    --danger: #C93B2B; 
+    --ok: #34d399;
+    --shadow: 0 20px 60px rgba(0,0,0,.35);
+    --radius-xl: 28px;
+    --radius-lg: 20px;
+    --radius-md: 14px;
+    --max: 1180px;
+    --font-serif: 'Noto Serif TC', serif;
+    --font-sans: 'Noto Sans TC', sans-serif;
+    --font-num: 'Impact', 'Helvetica Neue', Arial, sans-serif;
+}
+
+html, body { max-width: 100%; overflow-x: hidden; scroll-behavior: smooth; }
+*, *::before, *::after { box-sizing: border-box; }
+body { font-family: var(--font-sans); font-size: 20px; line-height: 1.8; letter-spacing: 0.05em; margin: 0; background-color: var(--bg); color: var(--text); }
+a { color: inherit; text-decoration: none; }
+.scroll-buffer { height: 30vh; display: block; }
+
+
+
+
+
+
+/* ==========================================================================
+   背景影片輪播樣式
+   ========================================================================== */
+.bg-carousel-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* 確保在底層但位於 overlay 之下 */
+}
+
+/* 影片疊加與淡入淡出過場 */
+.carousel-vid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out; /* 柔和的切換效果 */
+    pointer-events: none;
+}
+
+.carousel-vid.active {
+    opacity: 1;
+}
+
+/* 點點導覽列容器 */
+.carousel-dots {
+    position: absolute;
+    bottom: 5%; /* 畫面下方 */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 16px;
+    z-index: 50; /* 確保可以被點擊 */
+}
+
+/* 一般點點的樣式 */
+.carousel-dots .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.carousel-dots .dot:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* 正在播放的點點 (放大且變亮) */
+.carousel-dots .dot.active {
+    background-color: #ffffff;
+    transform: scale(1.6); /* 放大 1.6 倍，一眼看出 */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 2px 5px rgba(0,0,0,0.5);
+}
+
+
+
+
+
+
+
+/* ==========================================================================
+   2. Layout & Typography Components
+   ========================================================================== */
+.container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-xl); box-shadow: var(--shadow); overflow: hidden; backdrop-filter: blur(10px); }
+.card.pad { padding: 30px; } 
+
+h1, h2, h3, .brand { font-family: var(--font-serif); font-weight: 700; }
+.card h3 { margin: 0 0 15px; font-size: 26px; line-height: 1.3; color: var(--accent); }
+.card p { margin: 0 0 16px; color: #d5e2e8; }
+.muted { color: var(--muted) !important; }
+
+.section-head { margin-bottom: 40px; text-align: center; }
+h1 { margin: 0; font-size: clamp(32px, 7vw, 56px); line-height: 1.1; letter-spacing: .05em; text-align: center; text-wrap: balance; }
+h2 { margin: 0; font-size: clamp(28px, 4vw, 48px); line-height: 1.25; text-align: center; text-wrap: balance; color: var(--accent); }
+.section-desc { margin: 0 auto; text-align: center; line-height: 1.8; max-width: 800px; color: var(--muted); font-size: 18px; padding: 10px 20px; }
+.huge-number { font-family: var(--font-num); font-size: 3.5em; line-height: 1; color: var(--accent); letter-spacing: 2px; }
+
+/* ==========================================================================
+   3. Topbar & Nav
+   ========================================================================== */
+.topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; backdrop-filter: blur(14px); background: rgba(4, 12, 18, 0.85); border-bottom: 1px solid var(--line); }
+.topbar-inner { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 10px 20px; }
+.brand { display: flex; align-items: center; gap: 12px; font-weight: 700; letter-spacing: .04em; }
+.nav { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; font-size: 15px; color: var(--muted); }
+.nav a { padding: 8px 16px; border-radius: 999px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); transition: all 0.3s ease; }
+.nav a:hover { color: var(--text); border-color: var(--accent); background: rgba(255, 107, 0, 0.1); }
+
+/* ==========================================================================
+   4. Background Video & Hero Canvas
+   ========================================================================== */
+.scrolling-bg-container { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -2; overflow: hidden; background-color: #000; }
+#global-bg { width: 100%; height: 150vh; object-fit: cover; filter: saturate(0.3) brightness(0.3) contrast(1.2); will-change: transform; }
+.zoom-section { height: 800vh; position: relative; background-color: #000; }
+.zoom-sticky { position: sticky; top: 0; width: 100%; height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.zoom-sticky video { position: absolute; width: 100%; height: 100%; object-fit: cover; }
+
+/* 修改這兩行，在最後面加上 pointer-events: none; */
+#video-b { 
+    opacity: 0; 
+    filter: contrast(1.4) brightness(0.8) grayscale(0.8) blur(1px); 
+    pointer-events: none; /* 👉 新增這行：讓點擊穿透 */
+} 
+
+#video-c { 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    opacity: 0; 
+    z-index: 5; 
+    filter: contrast(1.4) brightness(0.8) grayscale(0.6) blur(1px); 
+    pointer-events: none; /* 👉 新增這行：讓點擊穿透 */
+}
+
+.monitor-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; pointer-events: none; opacity: 0; background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0px, rgba(0, 0, 0, 0.2) 2px, transparent 2px, transparent 4px); }
+
+/* 修改這裡：加入 pointer-events: none; */
+.zoom-png-frame { 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    z-index: 10; 
+    will-change: transform; 
+    pointer-events: none; /* 關鍵：讓滑鼠點擊穿透圖框 */
+}
+
+.zoom-content { position: absolute; top: 46%; left: 50%; transform: translate(-50%, -50%); width: 100%; text-align: center; z-index: 3; color: white; text-shadow: 0 0 20px rgba(0,0,0,0.8); pointer-events: none; }
+
+.scroll-text, .zoom-title { font-size: clamp(32px, 6vw, 44px); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 800px; text-align: center; z-index: 10; text-shadow: 0 0 15px rgba(0, 0, 0, 0.9), 0 0 5px rgba(0, 0, 0, 1); letter-spacing: 2px; }
+
+#text-main { max-width: 1000px; width: 95%; word-break: keep-all; opacity: 0; transform: translate(-50%, -40%); line-height: 1.8; letter-spacing: 4px; background: rgba(0, 0, 0, 0.6); padding: 30px 40px; border-radius: 12px; backdrop-filter: blur(8px); }
+.subtitle-overlay { position: absolute; bottom: 12%; left: 50%; transform: translateX(-50%); color: white; font-size: 26px; font-weight: bold; text-align: center; letter-spacing: 2px; text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 0 5px rgba(0,0,0,1); background: rgba(0, 0, 0, 0.6); padding: 10px 20px; border-radius: 8px; z-index: 20; opacity: 0; pointer-events: none; width: 90%; max-width: 800px; }
+
+
+
+/* ==========================================================================
+   5.5. Exit Challenge Section
+   ========================================================================== */
+.challenge-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    /*background: var(--bg2);  沿用深色背景 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 20px;
+    overflow: hidden;
+}
+
+.challenge-container {
+    width: 100%;
+    max-width: var(--max);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.challenge-heading {
+    font-family: var(--font-serif);
+    font-size: 38px;
+    color: var(--text);
+    margin-bottom: 70px;
+    text-align: center;
+    font-weight: 900;
+    letter-spacing: 2px;
+    /* 預設隱藏，由 GSAP 控制進場 */
+    opacity: 0;
+    transform: translateY(-40px);
+}
+
+.challenge-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+    width: 100%;
+}
+
+.challenge-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 45px 20px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    /* 預設隱藏，由 GSAP 控制進場 */
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+/* 滑鼠懸停的微動態 */
+.challenge-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent);
+}
+
+.challenge-number {
+    font-family: var(--font-num);
+    font-size: 68px;
+    color: var(--accent); /* 橘色強烈對比 */
+    font-weight: bold;
+    margin-bottom: 12px;
+    line-height: 1;
+}
+
+/* 針對右側「0處」特別套用 --danger 紅色，強調資源缺乏的危機感 */
+.card-right .challenge-number {
+    color: var(--danger);
+}
+
+.challenge-label {
+    font-family: var(--font-sans);
+    font-size: 20px;
+    color: var(--text);
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.challenge-desc {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* 平板與手機版自適應 RWD */
+@media (max-width: 968px) {
+    .challenge-section {
+        min-height: auto;
+        padding: 70px 20px;
+    }
+    .challenge-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    .challenge-heading {
+        font-size: 28px;
+        margin-bottom: 45px;
+    }
+    .challenge-card {
+        padding: 35px 25px;
+    }
+    .challenge-number {
+        font-size: 56px;
+    }
+}
+
+
+/* ==========================================================================
+   6. Tuna Storyboard & Fleet Impact
+   ========================================================================== */
+.tuna-section { height: 400vh; position: relative; width: 100%; z-index: 5; background-image: linear-gradient(to bottom, rgba(4, 12, 18, 0.85), rgba(4, 12, 18, 0.85)), url('../images/Gemini/Gemini_Generated_Image_gxpwywgxpwywgxpw_深海鮪魚群_小檔.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; }
+.tuna-sticky { position: relative; height: 100vh; width: 100%; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.tuna-texts { position: relative; z-index: 10; text-align: center; display: flex; flex-direction: column; align-items: center; width: 100%; pointer-events: none; }
+.tuna-text-1 { font-size: clamp(32px, 5vw, 64px); font-family: var(--font-serif); margin: 0; opacity: 0; text-shadow: 0 4px 20px rgba(0,0,0,0.8); }
+.tuna-text-2 { font-size: clamp(32px, 5vw, 64px); font-family: var(--font-serif); margin: 30px 0 0 0; color: var(--accent); opacity: 0; transform: translateY(20px); text-shadow: 0 0 20px rgba(255, 107, 0, 0.4); }
+
+/* 1. 讓生魚片文字絕對置中，不推擠其他版面 */
+.tuna-texts-sashimi { 
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    z-index: 10; 
+    text-align: center; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    width: 100%; 
+    pointer-events: none; 
+}
+
+.tuna-images { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; perspective: 1500px; z-index: 5; }
+.tuna-left, .tuna-right { position: absolute; top: 50%; width: 25vw; max-width: 300px; opacity: 0; }
+.tuna-left { left: 20%; transform: translateY(-50%); }
+.tuna-right { right: 20%; transform: translateY(-50%); }
+.tuna-center-wrapper { position: absolute; top: 35%; left: 50%; width: 30vw; max-width: 350px; aspect-ratio: 1/1; transform: translate(-50%, -50%); opacity: 0; }
+.tuna-center-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; }
+.tuna-front, .tuna-back { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; backface-visibility: hidden; }
+.tuna-back { transform: rotateY(180deg); top: -10%; filter: drop-shadow(0 0 25px rgba(255,107,0,0.8)); }
+.tuna-texts-3 { position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); width: 90%; font-size: 2rem; line-height: 1.8; color: #e9f2f6; text-shadow: 0 0 15px rgba(0, 0, 0, 0.9); opacity: 0; pointer-events: none; text-align: center; word-break: keep-all; }
+.how-text-1 { font-size: clamp(32px, 5vw, 64px); font-family: var(--font-serif); margin: 0; opacity: 0; text-shadow: 0 4px 20px rgba(0,0,0,0.8); }
+
+.ship-wrapper { position: absolute; opacity: 0; }
+.ship-img { width: 100%; display: block; animation: floatWave 4s infinite ease-in-out; }
+.fleet-left-1 { top: 5%; left: -30%; width: 40vw; } .fleet-left-1 .ship-img { animation-delay: 0s; }
+.fleet-left-2 { top: 20%; left: -40%; width: 40vw; } .fleet-left-2 .ship-img { animation-delay: -1.2s; }
+.fleet-left-3 { top: 32%; left: -28%; width: 45vw; } .fleet-left-3 .ship-img { animation-delay: -2.5s; }
+.fleet-left-4 { top: 50%; left: -39%; width: 50vw; } .fleet-left-4 .ship-img { animation-delay: -0.7s; }
+.fleet-right-1 { top: 2%; right: -32%; width: 40vw; } .fleet-right-1 .ship-img { animation-delay: -0.5s; }
+.fleet-right-2 { top: 20%; right: -40%; width: 40vw; } .fleet-right-2 .ship-img { animation-delay: -1.8s; }
+.fleet-right-3 { top: 35%; right: -30%; width: 40vw; } .fleet-right-3 .ship-img { animation-delay: -3.1s; }
+.fleet-right-4 { top: 50%; right: -42%; width: 44vw; } .fleet-right-4 .ship-img { animation-delay: -1.1s; }
+@keyframes floatWave { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-15px) rotate(3deg); } }
+
+.fleet-impact-section { height: 900vh; position: relative; width: 100%; background-color: #000; background-image: linear-gradient(to bottom, rgba(4, 12, 18, 0.45), rgba(4, 12, 18, 0.65)), url('../images/ChatGPT/ChatGPT\ Image\ 2026年6月5日\ 下午12_01_51_wordMap.png'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; }
+.fleet-impact-sticky { position: sticky; top: 0; height: 100vh; width: 100%; overflow: hidden; display: flex; align-items: center; justify-content: center; padding-top: 70px; box-sizing: border-box; }
+.fleet-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 2; }
+
+/* 2. 將產值數據內文也改為絕對置中，使其與前兩個畫面完美重疊切換 */
+.fleet-content { 
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    z-index: 10; 
+    width: 92%; 
+    max-width: 1400px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center; 
+}
+
+.fleet-text-intro { font-size: clamp(20px, 3.2vmin, 35px); line-height: 1.6; color: #e9f2f6; text-shadow: 0 4px 20px rgba(0,0,0,0.9); opacity: 0; margin-bottom: 2vh; word-break: keep-all; }
+.fleet-stats-wrapper { display: flex; justify-content: center; align-items: center; width: 100%; gap: 3vw; }
+/* 修復後的 .fleet-stat-left：加入 flex 排版與預設隱藏 opacity: 0 */
+.fleet-stat-left { 
+    display: flex; 
+    flex-direction: column; /* 讓內容垂直往下排 */
+    align-items: center; 
+    justify-content: center;
+    gap: 30px; /* 文字與影片之間留出呼吸空間 */
+    width: 100%; 
+    max-width: 1000px; 
+    margin: 0 auto;
+    opacity: 0; /* 關鍵！預設先隱藏，讓 GSAP 動畫來控制出現時機 */
+    transform: translateX(-150px); 
+}
+/* 左邊數字：預設隱藏並向左偏移 150px */
+.stat-left-box {
+    opacity: 0;
+    transform: translateX(-150px);
+}
+
+/* 右邊數字：預設隱藏並向右偏移 150px */
+.stat-right-box {
+    opacity: 0;
+    transform: translateX(150px);
+}
+
+/* 下方影片：預設隱藏並向下偏移 150px */
+.fleet-video-box {
+    width: 100%;
+    max-width: 650px;
+    opacity: 0;
+    transform: translateY(150px);
+}
+.fleet-stat-text { font-size: clamp(24px, 4vmin, 42px); color: var(--accent2, #f59e0b); margin-bottom: 1.5vh; text-shadow: 0 0 15px rgba(245, 158, 11, 0.5); }
+.fleet-stat-img { width: 100%; max-height: 35vh; border-radius: 12px; box-shadow: 0 15px 40px rgba(0,0,0,0.8); aspect-ratio: 16 / 9; object-fit: cover; }
+.fleet-text-outro { font-size: clamp(24px, 4vmin, 48px); font-weight: bold; color: var(--accent, #7dd3fc); margin-top: 4vh; text-shadow: 0 0 20px rgba(125, 211, 252, 0.6); opacity: 0; transform: translateY(50px); }
+
+.fao-section { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 15; pointer-events: none; }
+.fao-text-1, .fao-text-2, .fao-text-4 { font-size: clamp(24px, 4vw, 42px); color: #e9f2f6; text-shadow: 0 4px 20px rgba(0,0,0,0.9); opacity: 0; margin: 30px 0; text-align: center; }
+.fao-text-2 { color: var(--accent2, #f59e0b); font-weight: bold; }
+.fao-text-3 { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; font-size: clamp(24px, 4vw, 36px); line-height: 1.8; color: #e9f2f6; text-shadow: 0 4px 20px rgba(0,0,0,0.9); opacity: 0; text-align: center; pointer-events: none; }
+.fao-icons-container { position: relative; width: 100%; height: 380px; display: flex; align-items: center; justify-content: center; opacity: 0; }
+.fao-icon { position: absolute; top: 50%; left: 50%; width: 30px; height: 30px; background-image: url('../images/Gemini/icon/Gemini_Generated_Image_xgokv3xgokv3xgok_380噸級鮪延繩釣漁船_alpha_10.png'); background-size: contain; background-repeat: no-repeat; background-position: center; margin-left: -15px; margin-top: -15px; opacity: 0; }
+
+/* ==========================================================================
+   7. Crisis Cards Section (New Redesign from Table)
+   ========================================================================== */
+.crisis-cards-section { padding: 100px 0; background-color: var(--bg2); position: relative; z-index: 10; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+/* 1. 外層網格容器：強制卡片對齊頂端並等高 */
+.crisis-cards-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 25px; 
+    margin-top: 40px; 
+    align-items: stretch; /* 新增這行：強制所有卡片上下拉伸對齊，避免被文字基準線拉扯 */
+}
+
+/* 2. 卡片本體：改為 Flex 直向排版，讓內容乖乖從最上方開始排 */
+.crisis-card { 
+    background: rgba(255, 255, 255, 0.03); 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    border-radius: var(--radius-lg); 
+    padding: 30px; 
+    transition: transform 0.3s ease, background 0.3s ease; 
+    position: relative; 
+    overflow: hidden; 
+
+    /* 新增以下三行 */
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-start; 
+}
+
+.crisis-card:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.2); }
+.crisis-card.danger-card { border-color: rgba(201, 59, 43, 0.4); background: linear-gradient(180deg, rgba(201, 59, 43, 0.05) 0%, rgba(0,0,0,0) 100%); }
+
+/* 3. 卡片標題：歸零頂部外距，避免把內容往下推 */
+.crisis-card h3 { 
+    color: #fff; 
+    font-size: 22px; 
+    margin-top: 0; /* 新增這行：把瀏覽器給的預設頂部外距拿掉 */
+    margin-bottom: 15px; 
+    font-family: var(--font-sans); 
+}
+
+.crisis-card .card-tag { display: inline-block; background: var(--danger); color: #fff; font-size: 12px; padding: 4px 10px; border-radius: 999px; font-weight: bold; margin-bottom: 0; white-space: nowrap; }
+.crisis-card .card-number { font-size: 40px; font-weight: 900; font-family: var(--font-num); color: var(--accent); margin-bottom: 10px; line-height: 1; }
+.crisis-card .card-number span { font-size: 16px; font-family: var(--font-sans); color: var(--muted); font-weight: normal; }
+.crisis-card .card-highlight { color: var(--danger); font-weight: bold; font-size: 18px; margin-bottom: 10px; }
+.crisis-card p { font-size: 16px; color: #b3c2c9; margin: 0; line-height: 1.6; }
+
+/* 1. 新增：標題與標籤的橫向排版容器 */
+.card-title-wrapper {
+    display: flex;
+    align-items: center; /* 讓文字和標籤垂直對齊置中 */
+    gap: 12px; /* 標題與標籤之間的間隔距離 */
+    margin-bottom: 15px; /* 統一與下方數字(145)的間距 */
+}
+
+/* 2. 新增：取消 wrapper 內部 h3 的預設底部間距 (交給外層 wrapper 控制) */
+.card-title-wrapper h3 {
+    margin-bottom: 0;
+}
+
+
+/* ==========================================================================
+   8. Policy & Reality Sections
+   ========================================================================== */
+/* 修改前：height: 400vh; */
+/* 修改後：height: 150vh; */
+.policy-section { 
+    height: 150vh; /* 縮短高度，避免動畫自動播完後還要滑很久的空白 */
+    position: relative; 
+    width: 100%; 
+    background-image: linear-gradient(to bottom, rgba(4, 12, 18, 0.05), rgba(4, 12, 18, 0.25)), url('../images/ChatGPT/ChatGPT\ Image\ 2026年6月5日\ 下午12_01_51_wordMap.png'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+}
+
+.policy-sticky { position: sticky; top: 0; height: 100vh; width: 100%; overflow: hidden; display: flex; align-items: center; justify-content: center;  }
+.policy-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, rgba(13,36,48,0.8) 0%, rgba(4,12,18,1) 100%); z-index: 1; }
+.policy-content { position: relative; z-index: 10; width: 90%; max-width: 1000px; display: flex; flex-direction: column; align-items: center; }
+.policy-texts { display: flex; flex-direction: column; align-items: center; margin-bottom: 40px; justify-content: center; }
+.policy-text-1, .policy-text-2, .policy-text-3, .policy-text-4, .policy-text-5 { font-size: clamp(24px, 3.5vw, 36px); color: var(--text); margin: 15px 0; text-align: center; text-shadow: 0 4px 15px rgba(0,0,0,0.8); opacity: 0; transform: translateY(20px); line-height: 1.6; word-break: keep-all; }
+
+/* 政策字卡的初始狀態（等待 GSAP 動畫觸發） */
+.policy-card {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* 🌟 新增：獨立出來的「但......」樣式 */
+.policy-text-but {
+    font-family: var(--font-serif);
+    font-size: clamp(36px, 5vw, 56px); /* 字體放大凸顯 */
+    color: var(--danger); /* 紅色強調危機感 */
+    font-weight: 900;
+    margin-top: 50px;
+    letter-spacing: 5px;
+    text-shadow: 0 4px 20px rgba(201, 59, 43, 0.4); /* 紅色光暈 */
+    opacity: 0; /* 預設隱藏交給 GSAP */
+    transform: translateY(20px);
+}
+
+.reality-section { 
+    height: 150vh; /* 將原本的 500vh 改為 150vh */
+    position: relative; 
+    width: 100%; 
+    background-color: #000; 
+    background-image: linear-gradient(to bottom, rgba(4, 12, 18, 0.6), rgba(4, 12, 18, 0.7)), url('../images/Gemini/Gemini_Generated_Image_ppyq0qppyq0qppyq.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+}
+
+.reality-sticky { position: sticky; top: 0; height: 100vh; width: 100%; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.reality-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.9) 100%); z-index: 1; }
+.reality-content { position: relative; z-index: 10; width: 90%; max-width: 1000px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.reality-heading { font-size: clamp(32px, 5vw, 56px); color: var(--danger); font-family: var(--font-serif); margin-bottom: 50px; text-shadow: 0 4px 20px rgba(0,0,0,0.9); opacity: 0; transform: translateY(30px); }
+.reality-texts p { font-size: clamp(20px, 3vw, 28px); color: var(--text); margin: 15px 0; line-height: 1.8; text-shadow: 0 4px 15px rgba(0,0,0,0.9); opacity: 0; transform: translateY(20px); word-break: keep-all; }
+
+/* ==========================================================================
+   9. History Timeline 
+   ========================================================================== */
+ #history-timeline { width: 100%; max-width: 1200px; margin: 0 auto; padding: 120px 20px 50px; position: relative; color: var(--text);}    /* background: var(--bg);   */
+.timeline-main-title { text-align: center; font-family: var(--font-serif); font-size: clamp(36px, 5vw, 56px); margin-bottom: 20px; letter-spacing: 5px; text-shadow: 0 0 30px rgba(255, 255, 255, 0.1); color: var(--accent); }
+.timeline-container { position: relative; width: 100%; min-height: 800px; margin-top: 60px; }
+.timeline-container::before { content: ''; position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: rgba(255, 255, 255, 0.1); }
+.timeline-line-progress { position: absolute; left: 50%; transform: translateX(-50%); width: 2px; background: linear-gradient(to bottom, transparent, var(--accent), transparent); z-index: 1; }
+.timeline-item { width: 50%; margin-bottom: 100px; position: relative; z-index: 2; box-sizing: border-box; clear: both; }
+.timeline-item.left { float: left; text-align: right; padding-right: 60px; }
+.timeline-item.right { float: right; text-align: left; padding-left: 60px; }
+.timeline-container::after { content: ""; display: table; clear: both; }
+.timeline-dot { position: absolute; width: 18px; height: 18px; background: var(--accent); border-radius: 50%; top: 10px; box-shadow: 0 0 15px var(--accent); }
+.left .timeline-dot { right: -9px; } .right .timeline-dot { left: -9px; }
+.timeline-date { font-family: var(--font-serif); font-size: 2.2rem; font-weight: bold; color: var(--accent); margin-bottom: 15px; letter-spacing: 2px; }
+.timeline-content { font-size: 18px; line-height: 1.8; background: rgba(255, 255, 255, 0.03); padding: 30px; border-radius: var(--radius-lg); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.08); text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.timeline-img { width: 100%; height: auto; margin-top: 25px; border-radius: 8px; display: block; box-shadow: 0 10px 20px rgba(0,0,0,0.5); filter: grayscale(20%) contrast(1.1); }
+
+/* ==========================================================================
+   10. Dajingong Explosion Feature
+   ========================================================================== */
+.dajingong-section { height: 700vh; position: relative; width: 100%; background-color: #0a0a0a; background-image: linear-gradient(to bottom, rgba(20, 5, 5, 0.8), rgba(10, 5, 5, 0.95)), url('../images/Gemini/jpg/06.圖片六_1986_Gemini_Generated_Image_ba66hnba66hnba66.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; }
+.dajingong-sticky { position: relative; top: 0; height: 100vh; width: 100%; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.dajingong-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+.dajingong-content { position: relative; z-index: 10; width: 90%; max-width: 1000px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.dajingong-heading { font-family: var(--font-serif); font-size: clamp(40px, 6vw, 64px); color: var(--danger); margin-bottom: 40px; text-shadow: 0 0 40px rgba(201, 59, 43, 0.6), 0 4px 20px rgba(0,0,0,0.9); letter-spacing: 0.08em; opacity: 0; transform: translateY(30px); }
+.dajingong-texts p { font-size: clamp(20px, 3.5vw, 32px); color: var(--text); margin: 15px 0; line-height: 1.8; text-shadow: 0 4px 20px rgba(0,0,0,0.9); opacity: 0; transform: translateY(20px); word-break: keep-all; }
+.dj-bg-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 0; filter: grayscale(40%) contrast(1.2); }
+.dj-video-container { position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 1200px; display: flex; justify-content: center; z-index: 45; pointer-events: none; }
+.dj-video-wrapper { width: 80%; max-width: 600px; pointer-events: auto; }
+.dj-video-wrapper video { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radius-lg); box-shadow: 0 20px 50px rgba(0,0,0,0.9); border: 1px solid rgba(255,255,255,0.15); background-color: #000; }
+.dj-video-caption { color: var(--muted); text-align: center; margin-top: 20px; font-size: 16px; letter-spacing: 2px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); background-color: rgba(0, 0, 0, 0.7); padding: 8px 0; border-radius: 999px; }
+
+
+/* Glitch 容器設定 */
+.dajingong-heading {
+    position: relative;
+    transform-origin: center center;
+}
+
+/* 觸發時加入的震動動畫 - 加上更劇烈的變形與濾鏡 */
+.dajingong-heading.is-exploding {
+    animation: hardcore-shake 0.8s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+/* 利用偽元素產生強烈紅青殘影與位移 */
+.dajingong-heading.is-exploding::before,
+.dajingong-heading.is-exploding::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.9;
+    pointer-events: none;
+}
+
+.dajingong-heading.is-exploding::before {
+    left: 12px;
+    text-shadow: -8px 0 #ff0000, 0 0 25px #ff0000;
+    animation: hardcore-glitch-1 0.15s infinite linear alternate-reverse;
+}
+
+.dajingong-heading.is-exploding::after {
+    left: -12px;
+    text-shadow: 8px 0 #00ffff, 0 0 25px #00ffff;
+    animation: hardcore-glitch-2 0.2s infinite linear alternate-reverse;
+}
+
+/* 🌟 新增：大仁宮歷史照片 提示文字 */
+.dj-history-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-serif);
+    font-size: clamp(36px, 5vw, 56px); /* 大字體 */
+    color: var(--danger); /* 紅色 */
+    font-weight: 900; /* 粗體 */
+    letter-spacing: 5px;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.9), 0 0 15px rgba(201, 59, 43, 0.6);
+    z-index: 40;
+    opacity: 0; /* 預設隱藏 */
+    pointer-events: none;
+}
+
+
+/* --- 核心 Keyframes --- */
+/* 注意：此處 translate(0, 15vh) 與 scale(1.2) 是與下方 JS 設定的正中央座標同步 */
+@keyframes hardcore-shake {
+    0% { transform: translate(0, 15vh) scale(1.2); filter: brightness(1); }
+    10%, 30%, 50%, 70%, 90% { transform: translate(-30px, calc(15vh - 25px)) scale(1.25) rotate(-3deg); filter: brightness(2) contrast(1.5) hue-rotate(-20deg); }
+    20%, 40%, 60%, 80% { transform: translate(30px, calc(15vh + 25px)) scale(1.3) rotate(3deg); filter: brightness(2.5) invert(0.2) hue-rotate(20deg); }
+    100% { transform: translate(0, 15vh) scale(1.2); filter: brightness(1); }
+}
+
+@keyframes hardcore-glitch-1 {
+    0% { clip-path: inset(10% 0 80% 0); transform: translate(-5px, 5px); }
+    20% { clip-path: inset(60% 0 10% 0); transform: translate(5px, -5px); }
+    40% { clip-path: inset(30% 0 50% 0); transform: translate(-5px, 5px); }
+    60% { clip-path: inset(80% 0 5% 0); transform: translate(5px, -5px); }
+    80% { clip-path: inset(10% 0 70% 0); transform: translate(-5px, 5px); }
+    100% { clip-path: inset(40% 0 30% 0); transform: translate(5px, -5px); }
+}
+
+@keyframes hardcore-glitch-2 {
+    0% { clip-path: inset(20% 0 60% 0); transform: translate(5px, -5px); }
+    20% { clip-path: inset(70% 0 10% 0); transform: translate(-5px, 5px); }
+    40% { clip-path: inset(10% 0 80% 0); transform: translate(5px, -5px); }
+    60% { clip-path: inset(50% 0 30% 0); transform: translate(-5px, 5px); }
+    80% { clip-path: inset(30% 0 50% 0); transform: translate(5px, -5px); }
+    100% { clip-path: inset(60% 0 20% 0); transform: translate(-5px, 5px); }
+}
+
+
+/* ==========================================================================
+   11. Why Stay Section (The Aftermath)
+   ========================================================================== */
+#why-stay-section { height: 500vh; position: relative; width: 100%; background-color: #040c12; background-image: linear-gradient(to bottom, rgba(4, 12, 18, 0.95), rgba(4, 12, 18, 0.8)), url('../images/Gemini/Gemini_Generated_Image_wdrhevwdrhevwdrh_港灣廢船.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; }
+.why-stay-sticky { position: sticky; top: 0; height: 100vh; width: 100%; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.why-heading { font-family: var(--font-serif); font-size: clamp(32px, 5vw, 56px); color: var(--accent); margin-bottom: 20px; text-shadow: 0 4px 20px rgba(0,0,0,0.9); opacity: 0; text-align: center; }
+.why-cards-container { position: relative; width: 90%; max-width: 1250px; height: 45vh; margin-top: 30px; }
+.why-card { position: absolute; width: 32%; min-width: 280px; height: 300px; top: 50%; background: rgba(13, 36, 48, 0.9); border: 1px solid rgba(255, 107, 0, 0.3); border-radius: var(--radius-xl); padding: 30px 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); backdrop-filter: blur(12px); opacity: 0; color: var(--text); display: flex; flex-direction: column; }
+.why-card-1 { z-index: 1; } .why-card-2 { z-index: 2; } .why-card-3 { z-index: 3; }
+.why-card h3 { color: var(--danger); margin-top: 0; margin-bottom: 15px; font-size: clamp(20px, 2.2vw, 24px); border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+.why-card p { font-size: clamp(16px, 1.6vw, 18px); line-height: 1.6; margin: 0; color: #d5e2e8; }
+
+/* ==========================================================================
+   12. Xingda & Qieding Sections (The Solution & Pushback)
+   ========================================================================== */
+.xingda-section, .qieding-section { height: 500vh; position: relative; width: 100%; background-color: var(--bg2); background-image: linear-gradient(to bottom, rgba(4, 12, 18, 0.8), rgba(4, 12, 18, 0.6)), url('../images/ChatGPT/ChatGPT\ Image\ 2026年6月11日\ 下午01_31_27_黃昏中的船塭與城市天際線.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; }
+.xingda-sticky, .qieding-sticky { position: sticky; top: 0; height: 100vh; width: 100%; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 15vh; }
+.xingda-heading, .qieding-heading { font-family: var(--font-serif); font-size: clamp(32px, 5vw, 50px); color: var(--accent); margin-bottom: 2rem; text-shadow: 0 4px 20px rgba(0,0,0,0.8); text-align: center; opacity: 0; }
+.qieding-heading { color: var(--danger); text-shadow: 0 0 30px rgba(201, 59, 43, 0.4), 0 4px 20px rgba(0,0,0,0.8); }
+
+/* --- 興達港區塊動畫設定 --- */
+.xingda-animation-container {
+    position: relative; 
+    width: 85%; 
+    max-width: 900px; 
+    height: 180px; /* 稍微加高以容納文字 */
+    margin: 2rem 0; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+/* 虛線 */
+.xingda-dashed-line { 
+    position: absolute; 
+    top: 40%; /* 微調對齊船身 */
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    height: 2px; 
+    width: 0; /* 初始寬度為 0 */
+    border-top: 3px dashed var(--accent); 
+    z-index: 1; 
+}
+
+/* 中央的「前鎮」標籤 */
+.xd-center-label {
+    position: absolute;
+    top: 65%; /* 放在船的下方 */
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--accent);
+    font-weight: bold;
+    font-size: clamp(20px, 2.2vw, 26px);
+    text-align: center;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.9);
+    opacity: 0;
+    z-index: 5;
+    line-height: 1.3;
+}
+
+/* 船隻容器：強制全部置中重疊 */
+.xd-ship { 
+    position: absolute; 
+    top: 40%; 
+    left: 50%;
+    transform: translate(-50%, -50%); /* 起始狀態都在正中央 */
+    z-index: 2; 
+    opacity: 0; 
+}
+
+.xd-ship img { 
+    width: 140px; 
+    height: auto; 
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6)); 
+    display: block; 
+}
+
+/* 左/右側目的地標籤（獨立出來，不跟著船移動） */
+.xd-label { 
+    position: absolute; 
+    top: 50%; 
+    color: var(--accent); 
+    font-weight: bold; 
+    font-size: clamp(18px, 2vw, 24px); 
+    text-align: center; 
+    opacity: 0; 
+    text-shadow: 0 4px 15px rgba(0,0,0,0.9); 
+    white-space: nowrap; 
+    line-height: 1.3;
+    z-index: 5;
+}
+
+/* 將文字釘在船隻抵達的最外側位置，並向外推開約半個船身的距離 (80px) */
+.xd-label-left { 
+    left: 15%; 
+    transform: translate(calc(-100% - 80px), -50%); 
+}
+
+.xd-label-right { 
+    left: 85%; 
+    transform: translate(80px, -50%); 
+}
+
+
+.xingda-text-container, .qieding-text-container, .qieding-text-container-2 { width: 90%; max-width: 900px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 15px; }
+.xingda-text-container { margin-top: -20px; }
+.qieding-text-container-2 { position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; gap: 20px; }
+
+.xd-text, .qd-text, .qd2-text { font-size: clamp(18px, 2.5vw, 24px); color: var(--text); margin: 0; opacity: 0; transform: translateY(20px); line-height: 1.8; text-shadow: 0 4px 15px rgba(0,0,0,0.8); word-break: keep-all; }
+.highlight-danger { color: var(--danger); font-weight: bold; font-size: 1.1em; }
+
+.qieding-video-wrapper { width: 85%; max-width: 800px; opacity: 0; transform: translateY(30px); display: flex; flex-direction: column; align-items: center; margin-top: 20px; }
+.qieding-video-wrapper video { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radius-xl); box-shadow: 0 20px 60px rgba(0,0,0,0.9); border: 1px solid rgba(201, 59, 43, 0.3); background-color: #000; }
+.qd-video-caption { color: var(--muted); text-align: center; margin-top: 20px; font-size: 16px; letter-spacing: 2px; }
+
+/* ==========================================================================
+   13. Endpoint (Call to Action)
+   ========================================================================== */
+.endpoint-section { height: 800vh; position: relative; width: 100%; background-color: var(--bg2); background-image: linear-gradient(to bottom, rgba(4, 12, 18, 0.8), rgba(4, 12, 18, 0.95)), url('../images/ sailboat-medeteranian-sea_qt4.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; }
+.endpoint-sticky { position: sticky; top: 0; height: 100vh; width: 100%; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-top: 70px; box-sizing: border-box; }
+.endpoint-heading { font-family: var(--font-serif); font-size: clamp(32px, 5vw, 50px); color: var(--accent); text-shadow: 0 4px 20px rgba(0,0,0,0.8); text-align: center; opacity: 0; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; margin: 0; z-index: 20; }
+.endpoint-content { position: relative; width: 90%; max-width: 900px; margin-top: 10vh; display: flex; flex-direction: column; gap: 30px; text-align: center; z-index: 10; }
+.endpoint-text { font-size: clamp(18px, 2.5vw, 24px); color: var(--text); margin: 0; opacity: 0; transform: translateY(20px); line-height: 1.8; text-shadow: 0 4px 15px rgba(0,0,0,0.9); word-break: keep-all; }
+.endpoint-conclusion { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 900px; display: flex; align-items: center; justify-content: center; pointer-events: none; z-index: 30; }
+.ep-outro { position: absolute; font-family: var(--font-serif); font-size: clamp(32px, 5vw, 48px); color: #fff; text-shadow: 0 0 30px rgba(255,255,255,0.4), 0 4px 20px rgba(0,0,0,0.9); text-align: center; opacity: 0; line-height: 1.6; word-break: keep-all; width: 100%; }
+
+.conclusion-section { padding: 120px 20px; background: linear-gradient(180deg, transparent 0%, rgba(13, 36, 48, 0.9) 100%); border-top: 1px solid var(--line); }
+.text-center { text-align: center; }
+.conclusion-title { font-family: var(--font-serif); font-size: clamp(32px, 5vw, 48px); margin-bottom: 30px; color: var(--accent); text-shadow: 0 0 20px rgba(255, 107, 0, 0.3); }
+.conclusion-desc { font-size: 20px; color: var(--muted); max-width: 800px; margin: 0 auto 50px auto; line-height: 2; word-break: keep-all; }
+.cta-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+.btn-primary, .btn-secondary { font-family: var(--font-sans); font-size: 18px; padding: 15px 40px; border-radius: 999px; cursor: pointer; transition: all 0.3s ease; font-weight: bold; border: none; outline: none; }
+.btn-primary { background: var(--accent); color: #fff; box-shadow: 0 10px 20px rgba(255, 107, 0, 0.3); }
+.btn-primary:hover { background: #e65c00; transform: translateY(-3px); box-shadow: 0 15px 25px rgba(255, 107, 0, 0.4); }
+.btn-secondary { background: transparent; color: var(--text); border: 1px solid rgba(255, 255, 255, 0.3); }
+.btn-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: #fff; transform: translateY(-3px); }
+
+/* ==========================================================================
+   14. Music Control & Utilities
+   ========================================================================== */
+.music-control { position: fixed; top: 1.5%; right: 25px; width: 45px; height: 45px; background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; backdrop-filter: blur(5px); transition: all 0.5s ease; }
+.music-control:hover { background: rgba(255, 107, 0, 0.3); border-color: var(--accent); }
+.music-icon { font-size: 24px; user-select: none; }
+@keyframes musicBreathe { 0% { transform: scale(1); box-shadow: 0 0 5px rgba(255, 107, 0, 0.2); } 50% { transform: scale(1.1); box-shadow: 0 0 20px rgba(255, 107, 0, 0.6); } 100% { transform: scale(1); box-shadow: 0 0 5px rgba(255, 107, 0, 0.2); } }
+.music-control.is-playing { border-color: var(--accent); animation: musicBreathe 2s infinite ease-in-out; }
+.music-control.is-playing .music-icon { text-shadow: 0 0 10px var(--accent); }
+
+/* ==========================================================================
+   15. Responsive Design
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) { .ship-img { animation: none !important; } }
+
+@media (max-width: 960px) {
+    .problem-grid, .stats { grid-template-columns: 1fr !important; }
+}
+
+@media (max-width: 768px) {
+    .timeline-item { width: 90%; float: none !important; text-align: left !important; padding-left: 40px !important; margin-left: 5%; margin-bottom: 60px; }
+    .timeline-container::before, .timeline-line-progress { left: 20px; transform: none; }
+    .timeline-dot { left: 11px !important; }
+    .timeline-date { font-size: 1.8rem; }
+    .timeline-content { font-size: 16px; padding: 20px; }
+
+    #text-main { letter-spacing: 2px !important; width: 90% !important; padding: 20px !important; font-size: 18px !important; }
+    #text-main br, .tuna-text-1 br, .tuna-text-2 br { display: none; }
+    .subtitle-overlay { font-size: 18px !important; width: 90% !important; bottom: 5% !important; }
+
+    .topbar-inner { flex-direction: column; align-items: flex-start; padding: 10px 15px 5px; gap: 8px; }
+    .brand > div > div:first-child { font-size: 16px !important; }
+    .brand > div > .muted { font-size: 11px !important; }
+    .nav { display: flex !important; width: 100%; justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 5px; gap: 8px; scrollbar-width: none; }
+    .nav::-webkit-scrollbar { display: none; }
+
+    .reality-heading { margin-bottom: 30px; font-size: 28px; }
+    .reality-texts p { margin: 10px 0; font-size: 18px; }
+
+    .dj-video-container { width: 90%; }
+    .dj-video-wrapper { width: 95%; max-width: 900px; }
+    
+    .why-card { width: 85% !important; min-width: 280px; padding: 25px; height: auto; min-height: 300px; }
+    .why-heading { font-size: 32px; }
+
+    .fleet-stats-wrapper { flex-direction: column; gap: 20px; }
+    .fleet-stat-left, .fleet-stat-right { width: 90%; transform: translateX(0); }
+    
+    .crisis-cards-grid { grid-template-columns: 1fr; }
+
+    .qieding-sticky { padding-top: 15vh; }
+    .qieding-video-wrapper { width: 95%; }
+
+    .conclusion-section { padding: 80px 20px; }
+    .cta-actions { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto; }
+}
+
+@media (max-width: 640px) {
+    section { padding: 40px 0; }
+    .container { width: min(var(--max), calc(100% - 22px)); }
+    .huge-number { font-size: 2.8em; }
+}
+
+
+
+
+
+
+
+
+/* --- 滾動提示小動畫 --- */
+.scroll-indicator {
+    position: absolute;
+    bottom: -50px; /* 距離文字框底部的距離，可視排版微調 */
+    right: 5%;     /* 靠右下角 */
+    color: rgba(255, 255, 255, 0.6); /* 極簡半透明白色，若要顯眼可改為 var(--accent) */
+    opacity: 0;    /* 預設絕對隱藏，由 GSAP 接管出現時機 */
+    pointer-events: none; /* 避免干擾使用者點擊 */
+    z-index: 20;
+}
+
+/* SVG 本身的微動態 */
+.scroll-indicator svg {
+    animation: bounce-subtle 2s infinite ease-in-out;
+    filter: drop-shadow(0 2px 10px rgba(0,0,0,0.5)); /* 增加一點陰影，避免在複雜背景中糊掉 */
+}
+
+/* 極簡呼吸浮動關鍵影格 */
+@keyframes bounce-subtle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+}
