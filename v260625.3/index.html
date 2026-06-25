@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>大海的枷鎖：臺灣遠洋漁業困局</title> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&family=Noto+Serif+TC:wght@600;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+
+    <audio id="bgm" loop>
+        <source src="./music/The Other Universe.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="music-btn" class="music-control">
+        <span class="music-icon">🔇</span> 
+    </div>
+
+    <div class="topbar">
+        <div class="container topbar-inner">
+            <div class="brand">
+                <img src="../LOGO/LOGO10501頻道天標(慶聯版).svg" alt="我的 LOGO" style="height: 1.5em; width: auto;">
+                <div>
+                    <div style="font-size: 18px;">為何退役的遠洋漁船無處可拆</div>
+                </div>
+            </div>
+            <nav class="nav" aria-label="頁面導覽">
+                <a href="#top-of-page">首頁</a>
+                <a href="#exit-challenge">現況</a>
+                <a href="#crisis-data">衝擊</a>
+                <a href="#history-timeline">歷史</a>
+                <a href="#why-stay-section">難題</a>
+                <a href="#endpoint-section">未來</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- 新增：首頁餐桌記憶區塊 -->
+    <section id="top-of-page" class="intro-section">
+        <div class="intro-sticky">
+            <!-- 5. 下一個背景 bg2.jpg (預設隱藏在下方) -->
+            <img src="../images/BG/paperboard-texture.jpg" class="scene-bg2" alt="Background 2">
+            <div class="scene-overlay"></div>
+
+            <!-- 內文 2 (衛福部統計) -->
+<div class="scene-text-2">
+                
+                <div class="scene-human-wrapper">
+                    <img src="../images/吃貨/人物的肚子會一點一點的因為吃太多東西變大 487389_1.png" id="human-img" alt="Human">
+                </div>
+
+                <div class="scene-text-content">
+                    <p>根據衛福部食藥署統計，國人每年平均食用<span class="highlight-num">59.92公斤</span>的海鮮，包含<span class="highlight-num">28.35公斤</span>的魚、<span class="highlight-num">12.2公斤</span>的貝類、<span class="highlight-num">19.37公斤</span>的頭足類。</p>
+                    <div class="scene-source">(資料來源：衛福部食藥署，2019 年食物細項攝食量計算結果)</div>
+                </div>
+                
+                <div class="scene-chart-container">
+                    
+                    <img src="../images/魚/竹筴魚.png" class="creature c-fish1" alt="竹筴魚">
+                    <img src="../images/魚/鮪魚.png" class="creature c-fish2" alt="鮪魚">
+                    <img src="../images/魚/紅目鰱.png" class="creature c-fish3" alt="紅目鰱">
+                    <img src="../images/魚/鮑魚.png" class="creature c-shell1" alt="鮑魚">
+                    <img src="../images/魚/牡蠣.png" class="creature c-shell2" alt="牡蠣">
+                    <img src="../images/魚/文蛤.png" class="creature c-shell3" alt="文蛤">
+                    <img src="../images/魚/魷魚.png" class="creature c-squid1" alt="魷魚">
+                    <img src="../images/魚/章魚.png" class="creature c-squid2" alt="章魚">
+                    <img src="../images/魚/花枝.png" class="creature c-squid3" alt="花枝">
+
+                    <div class="bar-group">
+                        <div class="bar-wrapper">
+                            <div class="bar bar-fish"><span class="bar-value">28.35kg</span></div>
+                        </div>
+                        <div class="bar-label">魚</div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-wrapper">
+                            <div class="bar bar-shell"><span class="bar-value">12.2kg</span></div>
+                        </div>
+                        <div class="bar-label">貝類</div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-wrapper">
+                            <div class="bar bar-squid"><span class="bar-value">19.37kg</span></div>
+                        </div>
+                        <div class="bar-label">頭足類</div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- 1. 最底下的背景圖片 bg.jpg -->
+            <img src="../images/BG/organic-watercolor-background.jpg" class="scene-bg" alt="Background">
+            
+            <div class="scene-overlay"></div>
+
+            <!-- 3. 餐桌左右兩邊的一家人 -->
+            <img src="../images/food/Firefly_gpt-image_一家人圍繞中間豐盛大餐的圓桌_左邊_487389.png" class="scene-family-left" alt="Family Left">
+            <img src="../images/food/Firefly_gpt-image_一家人圍繞中間豐盛大餐的圓桌_右邊_487389.png" class="scene-family-right" alt="Family Right">
+            
+            <!-- 2. 中間的豐盛餐桌 (使用您指定的圖片做為餐桌) -->
+            <img src="../images/food/Gemini_Generated_Image_el01boel01boel01_.png" class="scene-food" alt="Food Table">
+            
+            <!-- 內文 1 (台灣人愛吃魚) -->
+            <div class="scene-text-1">
+                台灣人愛吃魚，台語俗諺<strong style="color:var(--accent2);">「一午二紅沙，三鯧四馬鮫，五鮸六嘉鱲」</strong>，正是台灣人心中美味的魚種排名，逢年過節、三餐四季，一條鮮嫩肥美的魚上桌，是許多人心中的餐桌記憶。
+            </div>
+
+            <!-- 4. 帶透明度的窗框 -->
+            <img src="../images/Gemini_Generated_Image_1q1vcq1q1vcq1q1v.png_.png" class="intro-png-frame" alt="Frame">
+        </div>
+    </section>
+
+    <!-- 原本的首頁：地圖與產值區塊 (往後移動) -->
+    <section id="map-section" class="map-section">
+        <div class="map-sticky"> 
+            <div id="video-carousel" class="bg-carousel-container"></div>
+
+            <div class="map-layer">
+                <img class="world-map-img" src="../images/ChatGPT/ChatGPT Image 2026年6月5日 下午12_01_51_wordMap.png" alt="World Map">
+                <div id="boats-container"></div>
+            </div>
+            
+            <div id="map-stats-overlay">
+                <div class="map-content-container">
+                    
+                    <div class="map-text-left">
+                        除了很愛吃魚，台灣人也很會捕魚，我國籍漁船作業水域遍及世界三大洋，平均年產量約<strong style="color:var(--accent2);">70餘萬公噸</strong>，帶來約<strong style="color:var(--accent2);">400億元</strong>的產值，其中，遠洋水產品的出口產值約<strong style="color:var(--accent2);">280億</strong>，佔了整體海洋漁業水產品出口產值的<strong style="color:var(--accent2);">七成</strong>。<br>若將捕撈的魚種範圍縮小，全球有三分之一的鮪延繩釣漁船掛籍台灣，世界各地的迴轉壽司檯面上一盤盤的鮪魚生魚片，每三片就有一片來自台灣。
+                    </div>
+                    
+
+        
+
+
+                    <div class="map-stats-right">
+                        <div class="map-video-wrapper">
+                            <video src="../videos/1150521 前鎮魚市場+漁獲-20MB.webm" autoplay loop muted playsinline></video>
+                        </div>
+                    </div>
+                    
+
+                </div>
+            </div>
+
+            <div class="monitor-overlay"></div> 
+        </div>
+
+        <div class="scrolling-bg-container"> 
+            <img src="../images/sailboat-medeteranian-sea_qt4.jpg" id="global-bg" alt="background"> 
+        </div>
+    </section>
+
+
+
+
+
+    <section id="fao-section" class="fleet-impact-section">
+        <div class="fleet-impact-sticky">
+            <div class="fleet-overlay"></div>
+            
+            <div class="fao-section">
+                <div class="fao-text-1">若將捕撈的魚種範圍縮小，根據聯合國糧農組織（FAO）統計</div>
+                <div class="fao-icons-container" id="fao-icons-container"></div>
+                <div class="fao-text-2">全球約有三分之一的鮪延繩釣漁船掛籍臺灣</div>
+            </div>
+
+            <div class="tuna-images">
+                <img src="../images/PNG/Gemini_Generated_Image_omskzxomskzxomsk_alpha.png" class="tuna-left" alt="Tuna Left">
+                <img src="../images/PNG/Gemini_Generated_Image_omskzxomskzxomsk_alpha.png" class="tuna-right" alt="Tuna Right">
+                <div class="tuna-center-wrapper">
+                    <div class="tuna-center-inner">
+                        <img src="../images/PNG/Gemini_Generated_Image_omskzxomskzxomsk_alpha.png" class="tuna-front" alt="Tuna Center">
+                        <img src="../images/PNG/Gemini_Generated_Image_5pbvp75pbvp75pbv_臺灣PNG.png" class="tuna-back" alt="Taiwan">
+                    </div>
+                </div>
+            </div>
+
+            <div class="tuna-texts-sashimi">
+                <h1 class="tuna-text-0">世界各地的迴轉壽司檯面上</h1>
+                <h1 class="tuna-text-1">一盤盤的鮪魚生魚片<br><br></h1>
+                <h1 class="tuna-text-2"><br><br><br>每三片就有一片來自台灣</h1>
+            </div>
+        </div>
+    </section>
+
+    <section id="history-timeline">
+        <h2 class="timeline-main-title">我們曾是「世界第一」的拆船王國</h2>
+        <p class="section-desc">那是一個用人命與污染換取經濟奇蹟的年代</p>
+        <div class="timeline-container">
+            <div class="timeline-line-progress"></div> 
+            
+            <div class="timeline-item left">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">1945</div>
+                <div class="timeline-content">
+                    戰後初期：高雄港內沈船多，政府鼓勵打撈拆解，奠定拆船工業基礎，初期集中於第三船渠。
+                    <img src="../images/Gemini/jpg/01.圖片一_戰後初期_1945年後_Gemini_Generated_Image_6yy4sv6yy4sv6yy4.jpg" class="timeline-img" alt="1945示意圖">
+                </div>
+            </div>
+
+            <div class="timeline-item right">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">1960</div>
+                <div class="timeline-content">
+                    1963年起政府標購廢船，1965年停止美援後，政府推出獎勵措施，拆船業迅速擴張。
+                    <img src="../images/Gemini/jpg/02.圖片二_960年代_Gemini_Generated_Image_rmpmwyrmpmwyrmpm.jpg" class="timeline-img" alt="1963示意圖">
+                </div>
+            </div>
+
+
+            <div class="timeline-item left">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">1968 年</div>
+                <div class="timeline-content">
+                    高雄拆船量躍居世界第一，成為名副其實的「拆船王國」。
+                    <img src="../images/Gemini/jpg/03.圖片三_1968年_Gemini_Generated_Image_2yh8ib2yh8ib2yh8.jpg" class="timeline-img" alt="1968示意圖">
+                </div>
+            </div>
+
+            <div class="timeline-item right">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">1970 年代</div>
+                <div class="timeline-content">
+                    拆船帶來龐大五金利益，在高雄公園路形成著名的「大五金街」，滿足了全臺灣四成的鋼鐵需求。
+                    <img src="../images/Gemini/jpg/04.圖片四_1970年代_Gemini_Generated_Image_8qj0d08qj0d08qj0.jpg" class="timeline-img" alt="1970示意圖">
+                </div>
+            </div>
+            
+            <div class="timeline-item left">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">1975 年</div>
+                <div class="timeline-content">
+                    政府興建「大仁宮拆船專區」。當時拆船效率極高，一萬噸大船只需 18 天就能解體，但背後隱藏著極高的工安危機。
+                    <img src="../images/Gemini/jpg/05.圖片五_1975-1978年_Gemini_Generated_Image_拆船專區jpg.jpg" class="timeline-img" alt="1975示意圖">
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="dajingong-section">
+        <div class="dajingong-sticky">
+        
+            <!-- 照片輪播容器 -->
+            <div class="dj-bg-slideshow">
+                <img class="dj-slide" src="../images/Academia_Historica_photo/156-030205-0005-044-006 Topaz Gigapixel 4x 縮放.jpg" alt="歷史照片 1">                
+                <img class="dj-slide" src="../images/Academia_Historica_photo/156-030205-0005-044-007 Topaz Gigapixel 4x 縮放.jpg" alt="歷史照片 2" style="object-position: center 20%;">
+                <img class="dj-slide" src="../images/Academia_Historica_photo/156-030205-0005-044-008 Topaz Gigapixel 4x 縮放.jpg" alt="歷史照片 3" style="object-position: center 80%;">
+                <img class="dj-slide" src="../images/Academia_Historica_photo/156-030205-0005-044-009 Topaz Gigapixel 4x 縮放.jpg" alt="歷史照片 4" style="object-position: center bottom;">
+                <img class="dj-slide" src="../images/Academia_Historica_photo/156-030205-0005-044-010 Topaz Gigapixel 4x 縮放.jpg" alt="歷史照片 5" style="object-position: center bottom;">
+                <img class="dj-slide" src="../images/Academia_Historica_photo/156-030205-0005-044-012 Topaz Gigapixel 4x 縮放.jpg" alt="歷史照片 6">
+                <img class="dj-slide" src="../images/Academia_Historica_photo/156-030205-0005-044-014 Topaz Gigapixel 4x 縮放.jpg" alt="歷史照片 7">
+                <img class="dj-slide" src="../images/Academia_Historica_photo/156-030205-0005-044-024 Topaz Gigapixel 4x 縮放.jpg" alt="歷史照片 8">
+                <img class="dj-slide" src="../images/Academia_Historica_photo/156-030205-0005-044-028 Topaz Gigapixel 4x 縮放.jpg" alt="歷史照片 9">
+                <img class="dj-slide" src="../images/Academia_Historica_photo/156-030205-0005-044-030 Topaz Gigapixel 4x 縮放.jpg" alt="歷史照片 10" style="object-position: center bottom;">
+                
+                <div class="dj-protect-overlay"></div>
+            </div>
+
+
+            <!-- 點點容器 -->
+            <div class="dj-dots-container">
+                <div class="dj-dot"></div>
+                <div class="dj-dot"></div>
+                <div class="dj-dot"></div>
+                <div class="dj-dot"></div>
+                <div class="dj-dot"></div>
+                <div class="dj-dot"></div>
+                <div class="dj-dot"></div>
+                <div class="dj-dot"></div>
+                <div class="dj-dot"></div>
+                <div class="dj-dot"></div>
+            </div>
+
+            <div class="dajingong-overlay"></div>
+
+            <video id="explosion-video" src="../videos/effect/爆炸效果.webm" autoplay loop muted playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 5; opacity: 0; pointer-events: none; mix-blend-mode: screen;"></video>
+            
+            <div class="dajingong-content">
+                <h2 class="dajingong-heading" data-text="1986.08.11 大仁宮大爆炸">1986.08.11 大仁宮大爆炸</h2>
+                <div class="dajingong-texts">
+                    <p class="dj-text-1">上午 11 時 40 分，加那利號油輪在拆解時發生連環大爆炸</p>
+                    <p class="dj-text-2">轟天巨響震碎了小港區，造成 16 人死亡、百餘人重傷</p>
+                    <p class="dj-text-3">這場爆炸，炸出了拆船業「肉身搏命、毫無防護」的殘酷真相</p>
+                    <p class="dj-text-4">現場工人與周圍居民，等同坐在不知何時引爆的火藥庫上</p>
+                    <p class="dj-text-5">從此，「拆船」被貼上了高污染、會死人的永恆標籤</p>
+                    <p class="dj-text-6">這個曾為臺灣帶來無數外匯的產業，徹底被趕出了臺灣</p>
+                </div>
+            </div>
+
+            <div class="dj-history-text">大仁宮歷史照片</div>
+
+            <div class="dj-video-container">
+                <div class="dj-video-wrapper">
+                    <video src="../videos/大仁宮事件附近居民說法(合輯).mp4" controls playsinline preload="metadata" poster="../images/左側預覽圖.jpg"></video>
+                    <p class="dj-video-caption">1980年代大仁宮爆炸案目擊居民說法</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <section id="crisis-data" class="crisis-cards-section">
+        <div class="container">
+            <div class="section-head">
+                <h2>看不見的絞殺線：國際配額銳減</h2>
+                <p class="section-desc">遠洋漁業面臨國際區域漁業管理組織（RFMOs）配額暴砍。<br>不是捕不到魚，而是「不能捕」。船隊規模遠超負荷，逼得船隻只能回港等死。</p>
+            </div>
+            
+            <div class="crisis-cards-grid">
+                <div class="crisis-card danger-card">
+                    <div class="card-title-wrapper">
+                        <h3>印度洋大目鮪</h3>
+                        <div class="card-tag">最嚴重災區</div>
+                    </div>
+                    
+                    <div class="card-number">145 <span>艘船</span></div>
+                    <p class="card-highlight">配額暴砍 67%</p>
+                    <p>國家配額從 3.5 萬噸銳減至 1.1 萬噸，僧多粥少，多數漁船根本無法維持營運。</p>
+                </div>
+                <div class="crisis-card">
+                    <h3>北太平洋秋刀魚</h3>
+                    <div class="card-number">-30% <span>漁獲衰退</span></div>
+                    <p class="card-highlight">內捲與躺平危機</p>
+                    <p>近 10 艘漁船寧可在高雄港「躺平」長滿藤壺，也不願冒著出海必定虧損的風險。</p>
+                </div>
+                <div class="crisis-card">
+                    <h3>西南大西洋魷魚</h3>
+                    <div class="card-number">20 <span>艘船/年</span></div>
+                    <p class="card-highlight">拿不到執照被迫賦閒</p>
+                    <p>高度依賴福克蘭群島合作，未獲執照的船隻被迫在高雄港空等半年，衍生嚴重的移工管理問題。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tuna-section" class="tuna-section">
+        <div class="tuna-sticky">
+            <div class="tuna-texts">
+                <h2 class="how-text-1">這些船是怎麼來的</h2>
+            </div>
+            <div class="tuna-texts-3">
+                <br><br><br><br>看著港口裡那些搖晃的破舊船影<br>你很難想像<br>這曾是為臺灣拚出千億產值的海上傳奇
+            </div>
+        
+            <div class="ship-wrapper fleet-left-1"><img src="../images/PNG/ChatGPT Image 2026年6月5日 上午09_50_34_左.png" class="ship-img" alt="Ship"></div>
+            <div class="ship-wrapper fleet-left-2"><img src="../images/PNG/ChatGPT Image 2026年6月5日 上午09_50_34_左.png" class="ship-img" alt="Ship"></div>
+            <div class="ship-wrapper fleet-left-3"><img src="../images/PNG/ChatGPT Image 2026年6月5日 上午09_50_34_左.png" class="ship-img" alt="Ship"></div>
+            <div class="ship-wrapper fleet-left-4"><img src="../images/PNG/ChatGPT Image 2026年6月5日 上午09_50_34_左.png" class="ship-img" alt="Ship"></div>
+            <div class="ship-wrapper fleet-right-1"><img src="../images/PNG/ChatGPT Image 2026年6月5日 上午09_50_49_右.png" class="ship-img" alt="Ship"></div>
+            <div class="ship-wrapper fleet-right-2"><img src="../images/PNG/ChatGPT Image 2026年6月5日 上午09_50_49_右.png" class="ship-img" alt="Ship"></div>
+            <div class="ship-wrapper fleet-right-3"><img src="../images/PNG/ChatGPT Image 2026年6月5日 上午09_50_49_右.png" class="ship-img" alt="Ship"></div>
+            <div class="ship-wrapper fleet-right-4"><img src="../images/PNG/ChatGPT Image 2026年6月5日 上午09_50_49_右.png" class="ship-img" alt="Ship"></div>
+        </div>
+    </section>
+
+    <section class="policy-section">
+        <div class="policy-sticky">
+            <div class="policy-overlay"></div>
+            <div class="policy-content" style="width: 90%; max-width: 1100px;">
+                <div class="policy-texts" style="margin-bottom: 10px;">
+                    <p class="policy-text-1">為了提供離漁誘因，漁業署自民國 113 年起啟動</p>
+                    <p class="policy-text-2"><span style="color:var(--accent); font-weight:bold; font-size: 1.2em;">「遠洋大型鮪延繩釣及魷釣漁船專案收購計畫」</span></p>
+                </div>
+                
+                <div class="crisis-cards-grid" style="width: 110%;">
+                    <div class="crisis-card policy-card">
+                        <h3>收購大釣漁船</h3>
+                        <div class="card-number">6 <span>萬元 / 噸</span></div>
+                        <p>以每噸新臺幣 6 萬元為基準，鼓勵老舊鮪延繩釣漁船退場。</p>
+                    </div>
+                    
+                    <div class="crisis-card policy-card">
+                        <h3>收購魷釣漁船</h3>
+                        <div class="card-number">2,100 <span>萬元 / 船</span></div>
+                        <p>祭出每船高達 2,100 萬元的高額收購金，加速大型魷釣船隊瘦身。</p>
+                    </div>
+                    
+                    <div class="crisis-card policy-card">
+                        <h3>預計退場目標</h3>
+                        <div class="card-number">80 <span>艘老船</span></div>
+                        <p>計畫收購 80 艘老舊漁船，讓它們正式退役，為海洋與產業減輕負擔。</p>
+                    </div>
+                </div>
+
+                <div class="policy-text-but">但......</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="exit-challenge" class="challenge-section">
+        <div class="challenge-container">
+            <h2 class="challenge-heading">30秒看懂：懸在海上的退場難題</h2>
+            
+            <div class="challenge-grid">
+                <div class="challenge-card card-left">
+                    <div class="challenge-number">80+艘</div>
+                    <div class="challenge-label">待拆解老舊漁船</div>
+                    <p class="challenge-desc">因政策收購面臨退役，目前只能滯留高雄港口</p>
+                </div>
+                
+                <div class="challenge-card card-center">
+                    <div class="challenge-number">3家</div>
+                    <div class="challenge-label">合法拆船廠</div>
+                    <p class="challenge-desc">全台僅存符合國際綠色拆船規範的稀缺能量</p>
+                </div>
+                
+                <div class="challenge-card card-right">
+                    <div class="challenge-number">0處</div>
+                    <div class="challenge-label">專用拆船碼頭</div>
+                    <p class="challenge-desc">缺乏合法且受社會接受的常設處理基地</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="incident-videos-section" class="incident-section">
+        <div class="incident-sticky">
+            <div class="monitor-overlay"></div> 
+
+            <video id="video-b" autoplay loop muted playsinline> 
+                <source src="../videos/勝得造船廠工安事件_SP500.mp4" type="video/mp4">
+            </video>
+            <div id="video-b-subtitles" class="subtitle-overlay">居民自家監視器拍下怪手在拆船時不慎翻覆</div>
+
+            <video id="video-c" autoplay loop muted playsinline>
+                <source src="../videos/旗津拆船廠失火_1.mp4" type="video/mp4">
+            </video>
+            <div id="video-c-subtitles" class="subtitle-overlay">2024年5月25日，高雄旗津區中洲三路一間造船廠發生火警<br>燒出了旗津居民長期以來的憤怒與恐懼<br>也將老舊漁船汰除的問題，翻上檯面……</div>
+        </div>
+    </section>
+
+    <section id="xingda-section" class="xingda-section">
+        <div class="xingda-sticky">
+            <h2 class="xingda-heading">暫時的出路：送往「興達海基」？</h2>
+            
+            <div class="xingda-animation-container">
+                <div class="xingda-dashed-line"></div>
+                
+                <div class="xd-center-label">
+                    前鎮<br><span style="font-size: 0.8em;">(塞爆放不下)</span>
+                </div>
+
+                <div class="xd-ship xd-ship-left">
+                    <img src="../images/PNG/ChatGPT Image 2026年6月5日 上午09_50_49_右.png" alt="Ship Left"> 
+                </div>
+
+                <div class="xd-ship xd-ship-right">
+                    <img src="../images/PNG/ChatGPT Image 2026年6月5日 上午09_50_34_左.png" alt="Ship Right"> 
+                </div>
+
+                <div class="xd-label xd-label-left">旗津<br><span style="font-size: 0.8em;">(民眾抗議不能拆)</span></div>
+                <div class="xd-label xd-label-right">興達海基<br><span style="font-size: 0.8em;">(居民強烈反彈)</span></div>
+            </div>
+
+            <div class="xingda-text-container">
+                <p class="xd-text xd-text-1">旗津不能拆，前鎮放不下</p>
+                <p class="xd-text xd-text-2">為了打破僵局，政府將目光投向北高雄的「興達海基」</p>
+                <p class="xd-text xd-text-4">行政院專案核定，將原本做離岸風電的園區，作為「臨時性」拆船場域</p>
+                <p class="xd-text xd-text-5">試圖避開市區人口密集地，把無處可去的老船移過去解體</p>
+                <p class="xd-text xd-text-6">但這個「由上而下」的引渡計畫，立刻點燃了另一把怒火</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="reality-section">
+        <div class="reality-sticky">
+            <div class="reality-overlay"></div>
+            <div class="reality-content">
+                <h2 class="reality-heading">政策藍圖美好，現實卻無比骨感</h2>
+                <div class="reality-texts">
+                    <p class="r-text-1">這 80 艘船收購回來後，卻發現：<strong style="color:var(--danger);">臺灣根本沒有地方可以拆船</strong></p>
+                    <p class="r-text-2">政府有錢買，卻沒地方處理垃圾</p>
+                    <p class="r-text-3">到底為什麼，臺灣會連一個合法拆船的地方都找不到？</p>
+                    <p class="r-text-4">這一切，都要從 40 年前的一場大爆炸說起……</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="currentColor">
+                <path d="M480-200 240-440l56-56 184 183 184-183 56 56-240 240Zm0-240L240-680l56-56 184 183 184-183 56 56-240 240Z"/>
+            </svg>
+        </div>
+    </section>
+
+    <section id="why-stay-section">
+        <div class="why-stay-sticky">
+            <h2 class="why-heading">當年的歷史創傷，變成今天的無解難題</h2>
+            
+            <div class="why-cards-container">
+                <div class="why-card why-card-1">
+                    <h3>鄰避效應：沒人敢當鄰居</h3>
+                    <p>因為大仁宮的慘痛記憶，加上近期旗津造船廠屢傳火災，現在只要一提到「拆船廠」，地方居民就強烈反對。即便現代已有綠色拆船技術，但信任已經破產，成為政策推行最大的礁石。</p>
+                </div>
+                
+                <div class="why-card why-card-2">
+                    <h3>法規與監督的「三不管」真空</h3>
+                    <p>拆船跨越陸地與海洋（半陸半海）。中央只管發營業執照，地方管環保開罰，但在退潮與漲潮的交界處，卻成了誰都能管、誰都沒在管的體制真空，污染悄悄流進大海。</p>
+                </div>
+                
+                <div class="why-card why-card-3">
+                    <h3>有生無死：殘缺的產業鏈</h3>
+                    <p>臺灣能造出遨遊三大洋的萬噸巨輪、頂級遊艇，卻在產業藍圖上漏掉了「回收」這最後一哩路。當減船潮來襲，長年「只建不拆」的反噬，終於卡死了我們的高雄港。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="qieding-section" class="qieding-section">
+        <div class="qieding-sticky">
+            <h2 class="qieding-heading">當藍圖撞上土地：茄萣人的二次被遺棄感</h2>
+            
+            <div class="qieding-video-wrapper">
+                <video id="qd-video" src="../videos/114-11-10 上午 農林部門業務質詢(邱俊憲VS海洋局長)_20MB.webm" controls playsinline preload="metadata" poster="../images/居民怒火預覽圖.jpg"></video>
+                <p class="qd-video-caption">▲ 議員質詢海洋局長</p>
+            </div>
+
+            <div class="qieding-text-container-2">
+                <p class="qd2-text qd2-text-1">這場政策對撞，戳破了臺灣環境治理最諷刺的現實：</p>
+                <p class="qd2-text qd2-text-2 highlight-danger">「體制的真空，並不會因為換了一個港灣就自動消失」</p>
+                <p class="qd2-text qd2-text-5">茄萣居民很清楚，如果中央依舊缺乏嚴格的實質污染監督機制</p>
+                <p class="qd2-text qd2-text-6">那條在旗津「同步污染土地與海洋」的黑水</p>
+                <p class="qd2-text qd2-text-7 highlight-danger">隨時會在興達港的海岸線上完美複製</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="endpoint-section" class="endpoint-section">
+        <div class="endpoint-sticky">
+            <h2 class="endpoint-heading">老船的終點，是我們對海洋的態度</h2>
+            
+            <div class="endpoint-content">
+                <p class="endpoint-text ep-text-1">這不僅僅是幾十艘破船要往哪裡擺的問題</p>
+                <p class="endpoint-text ep-text-2">我們享受了「全球每三片生魚片就有一片來自臺灣」的龐大經濟紅利<br>當這些船隻老去，我們卻只想假裝看不見廢棄的代價</p>
+                <p class="endpoint-text ep-text-3">拆除一艘船只需要幾個月，但要社會跨越歷史創傷，建立零污染的「綠色循環經濟」共識，卻無比艱難</p>
+                <p class="endpoint-text ep-text-4">當老船陸續退役，臺灣必須在環境正義與產業發展中，找到真正的出路<br>而不是一再把污染丟進沒有選票的海洋</p>
+            </div>
+
+            <div class="endpoint-conclusion">
+                <div class="ep-outro ep-outro-1">老船的故事即將落幕</div>
+                <div class="ep-outro ep-outro-2">但臺灣面對海洋遺產的選擇</div>
+                <div class="ep-outro ep-outro-3">才正要開始</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="conclusion-section text-center">
+        <div class="container">
+            <h2 class="conclusion-title">關注海洋，從了解開始</h2>
+            <p class="conclusion-desc">這片港灣的未來，需要更多人的關注與監督。<br>推動綠色拆船法規，落實循環經濟，才能讓臺灣真正成為負責任的海洋國家。</p>
+            <div class="cta-actions">
+                <button class="btn-primary" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">回到專題開頭</button>
+                <button class="btn-secondary" onclick="alert('分享功能即將上線！')">分享這篇專題</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // ==========================================================
+        // 背景影片輪播邏輯
+        // ==========================================================
+        document.addEventListener("DOMContentLoaded", function() {
+            const videos = document.querySelectorAll('.carousel-vid');
+            const dots = document.querySelectorAll('.carousel-dots .dot');
+            let currentIndex = 0;
+
+            function switchVideo(index) {
+                if (index === currentIndex || videos.length === 0) return;
+                let oldIndex = currentIndex; 
+                videos[oldIndex].classList.remove('active');
+                if(dots[oldIndex]) dots[oldIndex].classList.remove('active');
+                setTimeout(() => { videos[oldIndex].pause(); }, 800); 
+
+                currentIndex = index;
+                videos[currentIndex].classList.add('active');
+                if(dots[currentIndex]) dots[currentIndex].classList.add('active');
+                videos[currentIndex].currentTime = 0; 
+                videos[currentIndex].play().catch(e => console.log("Auto-play prevented", e));
+            }
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => { switchVideo(index); });
+            });
+
+            videos.forEach((vid, index) => {
+                vid.addEventListener('ended', () => {
+                    let nextIndex = (index + 1) % videos.length; 
+                    switchVideo(nextIndex);
+                });
+            });
+        });
+
+        // ==========================================================
+        // 大仁宮歷史照片自動輪播與點擊切換邏輯
+        // ==========================================================
+        document.addEventListener("DOMContentLoaded", function() {
+            const djSlides = document.querySelectorAll('.dj-slide');
+            const djDots = document.querySelectorAll('.dj-dot');
+            let djCurrentIndex = 0;
+            let djInterval;
+
+            function showDjSlide(index) {
+                if (djSlides.length === 0) return;
+                
+                // 移除舊的
+                djSlides[djCurrentIndex].classList.remove('active');
+                if(djDots[djCurrentIndex]) djDots[djCurrentIndex].classList.remove('active');
+                
+                // 更新索引並加上新的
+                djCurrentIndex = index;
+                djSlides[djCurrentIndex].classList.add('active');
+                if(djDots[djCurrentIndex]) djDots[djCurrentIndex].classList.add('active');
+            }
+
+            function nextDjSlide() {
+                let nextIndex = (djCurrentIndex + 1) % djSlides.length;
+                showDjSlide(nextIndex);
+            }
+
+            function startDjSlideshow() {
+                djInterval = setInterval(nextDjSlide, 3500); 
+            }
+
+            function resetDjSlideshow() {
+                clearInterval(djInterval);
+                startDjSlideshow();
+            }
+
+            // 讓滑鼠點擊點點時切換
+            djDots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    if(index !== djCurrentIndex) {
+                        showDjSlide(index);
+                        resetDjSlideshow(); 
+                    }
+                });
+            });
+
+            // 初始啟動
+            if(djSlides.length > 0) {
+                djSlides[0].classList.add('active');
+                if(djDots[0]) djDots[0].classList.add('active');
+                startDjSlideshow();
+            }
+        });
+
+
+        gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
+
+ 
+ 
+ 
+ 
+// ==========================================================
+        // 1. 新首頁：餐桌記憶動畫 (Intro Timeline)
+        // ==========================================================
+        const introTl = gsap.timeline({ 
+            scrollTrigger: { 
+                trigger: ".intro-section", 
+                start: "top top", 
+                end: "bottom bottom", 
+                scrub: 1.5, 
+                pin: ".intro-sticky", 
+                anticipatePin: 1 
+            } 
+        });
+
+        introTl.add("zoomStart", 0);
+        
+        // 窗框放大
+        introTl.to(".intro-png-frame", { scale: 80, ease: "power2.in", duration: 4 }, "zoomStart");
+        
+        // 【新增】餐桌縮小並往下移動，讓出中間空間 (可調整 scale 的數值跟 y 的 vh 距離)
+        introTl.to(".scene-food", { scale: 0.8, y: "15vh", xPercent: -50, transformOrigin: "bottom center", duration: 4, ease: "power2.out" }, "zoomStart");
+        
+        // 【新增】左右兩邊的家人從畫面兩側外 (±40vw) 滑入
+        introTl.fromTo(".scene-family-left", { x: "-40vw", opacity: 0 }, { x: "0", opacity: 1, duration: 3.5, ease: "power2.out" }, "zoomStart+=0.5");
+        introTl.fromTo(".scene-family-right", { x: "40vw", opacity: 0 }, { x: "0", opacity: 1, duration: 3.5, ease: "power2.out" }, "zoomStart+=0.5");
+
+        // 中間文字浮現
+        introTl.to(".scene-text-1", { opacity: 1, duration: 1.5 }, "zoomStart+=3.5");
+        
+        // 停頓讓讀者閱讀文字
+        introTl.to({}, { duration: 2.5 }); 
+
+        introTl.add("sceneOut");
+        
+        // 文字與第一張背景 bg 淡出 (遮罩 scene-overlay 留著繼續擋第二張背景)
+        introTl.to(".scene-text-1", { opacity: 0, duration: 1 }, "sceneOut");
+        introTl.to(".scene-bg", { opacity: 0, duration: 2 }, "sceneOut+=0.5");
+        
+        // 餐桌往上退場
+        introTl.to(".scene-food", { y: "-100vh", opacity: 0, duration: 2 }, "sceneOut+=0.5");
+        
+        // 左邊家人向左、右邊家人向右退場
+        introTl.to(".scene-family-left", { x: "-50vw", opacity: 0, duration: 2 }, "sceneOut+=0.5");
+        introTl.to(".scene-family-right", { x: "50vw", opacity: 0, duration: 2 }, "sceneOut+=0.5");
+        
+        // 下一個背景(bg2.jpg)從下方進場
+        introTl.to(".scene-bg2", { y: "0vh", duration: 2, ease: "power2.out" }, "sceneOut+=0.5");
+
+   // 衛福部統計文字與圖表整體淡入，並開啟滑鼠互動
+        introTl.to(".scene-text-2", { opacity: 1, pointerEvents: "auto", duration: 1.5 }, "+=0.5");
+        
+        // 長條圖生長，同時顯示上方的數值 (28.35kg, 12.2kg, 19.37kg)
+        introTl.to(".bar-fish", { height: "100%", duration: 1.5, ease: "power2.out" }, "-=0.5");
+        introTl.to(".bar-fish .bar-value", { opacity: 1, duration: 0.5 }, "-=0.5");
+        
+        introTl.to(".bar-shell", { height: "43%", duration: 1.5, ease: "power2.out" }, "-=1.2");
+        introTl.to(".bar-shell .bar-value", { opacity: 1, duration: 0.5 }, "-=1.2");
+        
+        introTl.to(".bar-squid", { height: "68%", duration: 1.5, ease: "power2.out" }, "-=1.2");
+        introTl.to(".bar-squid .bar-value", { opacity: 1, duration: 0.5 }, "-=1.2");
+        
+        // 停頓讓讀者閱讀與遊玩互動
+        introTl.to({}, { duration: 4 }); 
+
+
+
+
+        
+        // ==========================================================
+        // ★ 海洋生物點擊餵食互動邏輯 & 「吃我」隨機提示
+        // ==========================================================
+        const creatures = document.querySelectorAll('.creature');
+        const humanImg = document.getElementById('human-img');
+        const chartContainer = document.querySelector('.scene-chart-container');
+        let eatenCount = 1;
+
+        // 1. 動態建立「吃我」提示框
+        const hintEl = document.createElement('div');
+        hintEl.className = 'eat-me-hint';
+        hintEl.innerText = '吃我！';
+        chartContainer.appendChild(hintEl);
+
+        let hintTimer;
+
+        // 2. 隨機顯示提示的函數
+        function showRandomHint() {
+            // 檢查圖表區塊是否已經淡入 (opacity > 0.5)，如果還沒滑到這，就過 2 秒再檢查
+            const containerOpacity = parseFloat(window.getComputedStyle(document.querySelector('.scene-text-2')).opacity);
+            if (containerOpacity < 0.5) {
+                hintTimer = setTimeout(showRandomHint, 2000);
+                return;
+            }
+
+            const availableCreatures = document.querySelectorAll('.creature:not(.eaten)');
+            if (availableCreatures.length === 0) return; // 都吃光了就停止提示
+
+            // 隨機挑選一隻
+            const target = availableCreatures[Math.floor(Math.random() * availableCreatures.length)];
+            
+            // 計算相對座標
+            const containerRect = chartContainer.getBoundingClientRect();
+            const targetRect = target.getBoundingClientRect();
+            const posX = targetRect.left - containerRect.left + (targetRect.width / 2);
+            const posY = targetRect.top - containerRect.top;
+
+            // 播放浮現與淡出動畫
+            gsap.killTweensOf(hintEl);
+            gsap.fromTo(hintEl, 
+                { left: posX, top: posY, xPercent: -50, yPercent: -100, opacity: 0, scale: 0.5, y: 15 },
+                { 
+                    opacity: 1, scale: 1, y: -5, duration: 0.4, ease: "back.out(2)",
+                    onComplete: () => {
+                        // 停留 1.5 秒後淡出
+                        gsap.to(hintEl, { opacity: 0, y: -20, duration: 0.4, delay: 1.5 });
+                    }
+                }
+            );
+
+            // 安排下一次隨機出現 (3~6 秒)
+            hintTimer = setTimeout(showRandomHint, gsap.utils.random(3000, 6000));
+        }
+
+        // 啟動循環檢查
+        showRandomHint();
+
+
+        // 3. 點擊餵食互動
+        creatures.forEach(creature => {
+            creature.addEventListener('click', function() {
+                // 如果已經被點過，就不再重複執行
+                if (this.classList.contains('eaten')) return;
+                this.classList.add('eaten');
+
+                // ★ 點擊被吃掉時，順便把提示框強制隱藏，避免文字剛好出現時殘留在畫面上
+                gsap.to(hintEl, { opacity: 0, duration: 0.2 });
+
+                // 移除持續漂浮的 CSS 動畫，避免與 GSAP 的位移起衝突
+                this.style.animation = 'none';
+
+                // 取得移除動畫後，生物目前的精確座標
+                const rectAfter = this.getBoundingClientRect();
+                const startX = rectAfter.left + (rectAfter.width / 2);
+                const startY = rectAfter.top + (rectAfter.height / 2);
+
+                // 取得人類目前的精確座標 (設定嘴巴位置約在圖片上半部 15% 處)
+                const humanRect = humanImg.getBoundingClientRect();
+                const targetX = humanRect.left + (humanRect.width / 2);
+                const targetY = humanRect.top + (humanRect.height * 0.15);
+
+                // 計算相對需要移動的 x, y 距離
+                const moveX = targetX - startX;
+                const moveY = targetY - startY;
+
+                // 利用 GSAP 製作飛入嘴巴並縮小的動畫
+                gsap.to(this, {
+                    x: moveX,
+                    y: moveY,
+                    scale: 0.1,    // 縮小到 10%
+                    duration: 0.6,
+                    ease: "power2.in", 
+                    onComplete: () => {
+                        this.style.display = 'none'; // 徹底隱藏
+                        
+                        // 1. 觸發人類震動效果
+                        humanImg.classList.add('human-eating-shake');
+                        setTimeout(() => {
+                            humanImg.classList.remove('human-eating-shake');
+                        }, 300);
+
+                        // 2. 切換下一張變胖的人類圖片
+                        if(eatenCount < 9) {
+                            eatenCount++;
+                            humanImg.src = `../images/吃貨/人物的肚子會一點一點的因為吃太多東西變大 487389_${eatenCount}.png`;
+                        }
+                    }
+                });
+            });
+        });
+
+
+        
+        // 準備進入下一個 Section 前，淡出整個場景 (包含背景2、文字與遮罩)
+        // introTl.to([".scene-bg2", ".scene-overlay", ".scene-text-2", ".intro-png-frame"], { opacity: 0, duration: 2 });
+
+
+
+
+
+
+        // ==========================================================
+        // 1-2. 世界地圖與產值動畫 (Map Timeline - 往後移)
+        // ==========================================================
+        const boatContainer = document.getElementById('boats-container');
+        
+        // 建立 80 艘船，並直接亂數分配到指定位置...
+        for (let i = 0; i < 80; i++) {
+            let boat = document.createElement('img');
+            boat.src = '../images/PNG/ChatGPT Image 2026年6月5日 上午09_50_34_左.png'; 
+            boat.className = 'map-boat';
+            
+            let zone = i % 7;
+            let targetX, targetY;
+            switch(zone) {
+                case 0: targetX = gsap.utils.random(-38, -32); targetY = gsap.utils.random(-20, -15); break;
+                case 1: targetX = gsap.utils.random(-46, -39); targetY = gsap.utils.random(8, 35); break;
+                case 2: targetX = gsap.utils.random(-28, -16); targetY = gsap.utils.random(5, 30); break;
+                case 3: targetX = gsap.utils.random(-1, 17); targetY = gsap.utils.random(-25, -1); break;
+                case 4: targetX = gsap.utils.random(2, 29); targetY = gsap.utils.random(10, 33); break;
+                case 5: targetX = gsap.utils.random(35, 49); targetY = gsap.utils.random(-20, -2); break;
+                case 6: targetX = gsap.utils.random(40, 48); targetY = gsap.utils.random(20, 35); break;
+            }
+            boat.style.transform = `translate(calc(-50% + ${targetX}vw), calc(-50% + ${targetY}vh))`;
+            boatContainer.appendChild(boat);
+        }
+
+        // ----------------------------------------------------------
+        // [新增] 1. 背景視差滾動：地圖與船會隨著滑鼠往下滾，緩慢往上滑動
+        // ----------------------------------------------------------
+        gsap.to(".map-layer", {
+            yPercent: -15, // 向上微微移動 15% (因為 CSS 高度已加長，所以不會穿幫)
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".map-section",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true // 跟隨滑鼠滾動的進度
+            }
+        });
+
+        // ----------------------------------------------------------
+        // [新增] 2. 文字獨立進場：當區塊進入畫面時，文字自動浮現
+        // ----------------------------------------------------------
+        gsap.to(".map-content-container", {
+            opacity: 1,
+            y: 0,
+            duration: 1.5,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".map-section",
+                start: "top 65%", // 當區塊頂部碰到畫面 65% 的位置時觸發
+                toggleActions: "play none none reverse" // 往下滾播放，往上滾退回隱藏
+            }
+        });
+        
+
+
+
+
+
+
+
+
+
+        // 音樂與背景控制
+        const bgImg = document.querySelector("#global-bg");
+        if(bgImg) gsap.to("#global-bg", { y: () => -(bgImg.offsetHeight - window.innerHeight), ease: "none", scrollTrigger: { trigger: "body", start: "top top", end: "bottom bottom", scrub: 0.5 }});
+
+        const bgm = document.getElementById('bgm');
+        const musicBtn = document.getElementById('music-btn');
+        const musicIcon = musicBtn.querySelector('.music-icon');
+        musicBtn.addEventListener('click', () => {
+            if (bgm.paused) { bgm.play(); musicIcon.innerText = '🎵'; musicBtn.classList.add('is-playing'); } 
+            else { bgm.pause(); musicIcon.innerText = '🔇'; musicBtn.classList.remove('is-playing'); }
+        });
+
+        // ==========================================================
+        // 2. 鮪魚滾動與 3D 船隊
+        // ==========================================================
+        const tunaTl = gsap.timeline({ scrollTrigger: { trigger: ".tuna-section", start: "top top", end: "bottom bottom", scrub: 1.5, pin: ".tuna-sticky", anticipatePin: 1 }});
+        
+        tunaTl.to(".how-text-1", { opacity: 1, duration: 0.6 })
+              .fromTo(".fleet-left-1", { x: "-10vw", opacity: 0 }, { x: "25vw", opacity: 0.9, duration: 4, ease: "power1.out" }, "fleetIn")
+              .fromTo(".fleet-left-2", { x: "-10vw", opacity: 0 }, { x: "35vw", opacity: 0.9, duration: 3.5, ease: "power1.out" }, "fleetIn+=0.2")
+              .fromTo(".fleet-left-3", { x: "-10vw", opacity: 0 }, { x: "20vw", opacity: 0.9, duration: 4.5, ease: "power1.out" }, "fleetIn+=0.4")
+              .fromTo(".fleet-left-4", { x: "-10vw", opacity: 0 }, { x: "30vw", opacity: 0.9, duration: 3.8, ease: "power1.out" }, "fleetIn+=0.6")
+              .fromTo(".fleet-right-1", { x: "10vw", opacity: 0 }, { x: "-25vw", opacity: 0.9, duration: 4.2, ease: "power1.out" }, "fleetIn+=0.1")
+              .fromTo(".fleet-right-2", { x: "10vw", opacity: 0 }, { x: "-35vw", opacity: 0.9, duration: 3.2, ease: "power1.out" }, "fleetIn+=0.3")
+              .fromTo(".fleet-right-3", { x: "10vw", opacity: 0 }, { x: "-20vw", opacity: 0.9, duration: 4.6, ease: "power1.out" }, "fleetIn+=0.5")
+              .fromTo(".fleet-right-4", { x: "10vw", opacity: 0 }, { x: "-30vw", opacity: 0.9, duration: 3.6, ease: "power1.out" }, "fleetIn+=0.7")
+              .to(".how-text-1", { y: "-20vh", opacity: 1, duration: 1, ease: "power1.inOut" }, "slideIn")
+              .to(".tuna-texts-3", { opacity: 1, y: 0, duration: 1 }, "slideIn")
+              .to({}, { duration: 1 }) 
+              .to(".tuna-texts-3", { opacity: 0, y: -50, duration: 1 }, "fleetOut")
+              .to(".ship-wrapper", { opacity: 0, duration: 1 }, "fleetOut")
+              .to(".how-text-1", { opacity: 0, y: "-45vh", duration: 1 }, "fleetOut")
+              .to({}, { duration: 0.5 });
+
+        // ==========================================================
+        // 3. FAO 陣列破散與生魚片動畫
+        // ==========================================================
+        const faoContainer = document.getElementById('fao-icons-container');
+        const faoIcons = [];
+        for (let i = 0; i < 400; i++) { 
+            const icon = document.createElement('div'); icon.className = 'fao-icon';
+            faoContainer.appendChild(icon); faoIcons.push(icon);
+        }
+        const bounds = [
+            {y:-171, min:37, max:72}, {y:-156, min:10, max:81}, {y:-141, min:1, max:89},
+            {y:-126, min:-7, max:81}, {y:-110, min:-16, max:72}, {y:-95, min:-25, max:81},
+            {y:-80, min:-34, max:72}, {y:-65, min:-42, max:63}, {y:-49, min:-51, max:54},
+            {y:-34, min:-60, max:63}, {y:-19, min:-69, max:54}, {y:-4, min:-78, max:45},
+            {y:12, min:-86, max:37}, {y:27, min:-78, max:45}, {y:42, min:-86, max:37},
+            {y:57, min:-78, max:28}, {y:72, min:-86, max:19}, {y:88, min:-78, max:10},
+            {y:103, min:-69, max:1}, {y:118, min:-60, max:-7}, {y:133, min:-51, max:-16},
+            {y:149, min:-25, max:-25}, {y:164, min:-34, max:-16}, {y:179, min:-25, max:-25}
+        ];
+        const taiwanCoords = [];
+        bounds.forEach(b => {
+            const stepX = 16;
+            for (let x = b.min; x <= b.max; x += stepX) taiwanCoords.push({x: x, y: b.y});
+            if (taiwanCoords[taiwanCoords.length - 1].x !== b.max) taiwanCoords.push({x: b.max, y: b.y});
+        });
+        const taiwanIndices = [];
+        const step = 400 / taiwanCoords.length; 
+        for (let i = 0; i < taiwanCoords.length; i++) taiwanIndices.push(Math.floor(i * step)); 
+
+        const fleetTl = gsap.timeline({ 
+            scrollTrigger: { 
+                trigger: ".fleet-impact-section", 
+                start: "top top", 
+                end: "bottom bottom", 
+                scrub: 1.5, 
+                pin: ".fleet-impact-sticky", 
+                anticipatePin: 1 
+            } 
+        });
+
+        gsap.set([".tuna-texts-sashimi", ".tuna-images"], { display: "none" });
+
+        fleetTl
+            .to(".fao-text-1", { opacity: 1, y: 0, duration: 2 }, "faoStart")
+            .to(".fao-icons-container", { opacity: 1, duration: 0 }, "faoStart")
+            .fromTo(faoIcons, { opacity: 0, y: () => window.innerHeight, x: (i) => ((i % 40) - 19.5) * 26 }, { opacity: 1, y: (i) => (Math.floor(i / 40) - 4.5) * 26, duration: 2, stagger: 0.002, ease: "power2.out" }, "faoStart+=0.5")
+            .to({}, { duration: 1.5 }) 
+            .to(".fao-text-2", { opacity: 1, y: 0, duration: 2 }, "faoMorph")
+            .to(faoIcons, {
+                x: (i) => { const tIdx = taiwanIndices.indexOf(i); return tIdx !== -1 ? taiwanCoords[tIdx].x : (Math.random() > 0.5 ? 1 : -1) * (window.innerWidth / 2 + 150); },
+                y: (i) => { const tIdx = taiwanIndices.indexOf(i); return tIdx !== -1 ? taiwanCoords[tIdx].y : (Math.random() - 0.5) * 600; },
+                opacity: (i) => (taiwanIndices.includes(i) ? 1 : 0), 
+                rotation: (i) => (taiwanIndices.includes(i) ? 0 : (Math.random() - 0.5) * 360), 
+                duration: 2.5, ease: "power2.inOut"
+            }, "faoMorph")
+            .to({}, { duration: 2.5 })
+            .to([".fao-text-1", ".fao-text-2", ".fao-icons-container"], { opacity: 0, y: "-=40", duration: 2, ease: "power2.inOut" }, "fadeOutFao")
+            .to([".fao-text-1", ".fao-text-2", ".fao-icons-container"], { display: "none", duration: 0 })
+            .to({}, { duration: 1 }) 
+            .to([".tuna-texts-sashimi", ".tuna-images"], { display: "flex", duration: 0 })
+            .to(".tuna-text-0", { opacity: 1, duration: 1 })
+            .to(".tuna-text-1", { opacity: 1, duration: 1 })
+            .to({}, { duration: 0.5 }) 
+            .fromTo(".tuna-left", { x: "-30vw", opacity: 0 }, { x: 0, opacity: 1, duration: 2, ease: "power2.out" }, "fishIn")
+            .fromTo(".tuna-right", { x: "30vw", opacity: 0 }, { x: 0, opacity: 1, duration: 2, ease: "power2.out" }, "fishIn")
+            .fromTo(".tuna-center-wrapper", { y: "40vh", opacity: 0 }, { y: 0, opacity: 1, duration: 2, ease: "power2.out" }, "fishIn")
+            .to({}, { duration: 1.5 })
+            .to(".tuna-center-inner", { rotateY: 180, duration: 2.5, ease: "power2.inOut" }, "flip")
+            .to(".tuna-left", { x: "-20vw", opacity: 0, duration: 2 }, "flip")
+            .to(".tuna-right", { x: "20vw", opacity: 0, duration: 2 }, "flip")
+            .to(".tuna-text-0", { y: -50, duration: 2 }, "flip")
+            .to(".tuna-text-1", { y: -50, duration: 2 }, "flip")
+            .to(".tuna-text-2", { opacity: 1, y: 0, duration: 2 }, "flip+=0.8")
+            .to({}, { duration: 2.5 })
+            .to([".tuna-text-1", ".tuna-text-2", ".tuna-center-wrapper"], { opacity: 0, y: "-=60", duration: 1.5, ease: "power2.in" }, "fadeOutOld")
+            .to([".tuna-texts-sashimi", ".tuna-images"], { display: "none", duration: 0 })
+            .to({}, { duration: 1 });
+
+        // ==========================================================
+        // 4. 其他區塊動畫 (歷史)
+        // ==========================================================
+        gsap.fromTo(".timeline-line-progress", { height: 0 }, { height: "100%", ease: "none", scrollTrigger: { trigger: ".timeline-container", start: "top 20%", end: "bottom 80%", scrub: true }});
+        gsap.utils.toArray(".timeline-item").forEach((item) => {
+            const isLeft = item.classList.contains('left');
+            gsap.fromTo(item, { x: isLeft ? -100 : 100, opacity: 0 }, { x: 0, opacity: 1, duration: 1, scrollTrigger: { trigger: item, start: "top 85%", end: "top 50%", scrub: 1 }});
+        });
+
+
+        // ==========================================================
+        // 大仁宮時間軸 (包含爆炸、內文一次浮現、歷史照片輪播、訪談影片退場)
+        // ==========================================================
+        const dajingongTl = gsap.timeline({ 
+            scrollTrigger: { 
+                trigger: ".dajingong-section", 
+                start: "top top", 
+                end: "bottom bottom", 
+                scrub: 1.5, 
+                pin: ".dajingong-sticky", 
+                anticipatePin: 1 
+            }
+        });
+
+        // 初始設定
+        gsap.set(".dajingong-heading", { y: "15vh", scale: 1.2, opacity: 0 });
+        gsap.set(".dajingong-texts p", { opacity: 0, y: 20 }); // 先把內文藏好
+
+        dajingongTl
+            // [階段 1] 標題出現在畫面正中央並觸發狂暴震動，同步顯示爆炸效果
+            .to(".dajingong-heading", { 
+                opacity: 1, 
+                duration: 1.5,
+                ease: "power2.out",
+                onStart: () => document.querySelector(".dajingong-heading").classList.add("is-exploding"),
+                onReverseComplete: () => document.querySelector(".dajingong-heading").classList.remove("is-exploding")
+            })
+            .to("#explosion-video", { opacity: 0.9, duration: 0.5 }, "<")
+            .to({}, { duration: 1 })
+            
+            // [階段 2] 標題上移，直接讓所有內文以稍微接續(stagger)的方式平滑浮現
+            .to(".dajingong-heading", { 
+                y: "-5vh", 
+                scale: 1, 
+                duration: 2.5, 
+                ease: "power2.inOut",
+                onStart: () => document.querySelector(".dajingong-heading").classList.remove("is-exploding")
+            })
+            .to("#explosion-video", { opacity: 0.2, duration: 2 }, "<")
+            // 直接讓段落 p 標籤整齊、柔和地一次浮現
+            .to(".dajingong-texts p", { opacity: 1, y: 0, duration: 1.5, ease: "power2.out", stagger: 0.15 }, "<0.5")
+            
+            // 預留時間讓使用者看完文字
+            .to({}, { duration: 5 })
+            
+            // [階段 3] 內文與大標題同時往上離開並變透明
+            .to(".dajingong-texts p", { opacity: 0, y: -40, duration: 2 }, "textOut")
+            .to(".dajingong-heading", { opacity: 0, y: -80, duration: 2 }, "textOut") 
+            
+            // [階段 4] 文字退場後，歷史照片輪播與點點淡入
+            .to(".dj-bg-slideshow", { opacity: 1, duration: 2, ease: "none" }, "bgChange")
+            .to(".dj-dots-container", { opacity: 1, duration: 2, ease: "none" }, "bgChange")
+            .to("#explosion-video", { opacity: 0, duration: 1 }, "bgChange") // 爆炸特效完全消失
+            
+            // [階段 5] 紅色提示文字浮現，停留一下後退場
+            .to(".dj-history-text", { opacity: 1, duration: 1 }, "bgChange+=1")
+            .to({}, { duration: 2.5 }) 
+            .to(".dj-history-text", { opacity: 0, y: -20, duration: 1 }, "textDisappear")
+            
+            // 👇 關鍵修改：讓照片輪播牆、點點 隨著訪談影片的出現 一起退場
+            .to([".dj-bg-slideshow", ".dj-dots-container"], { opacity: 0, duration: 2 }, "textDisappear")
+            .fromTo(".dj-video-wrapper", { opacity: 0, y: "10vh" }, { autoAlpha: 1, y: 0, duration: 2, ease: "power2.out" }, "textDisappear+=0.5")
+            
+            // 停留看影片
+            .to({}, { duration: 3.5 })
+            
+            // 影片視窗淡出結束這一段
+            .to(".dj-video-container", { opacity: 0, y: -50, duration: 1.5 });
+
+
+        // ==========================================================
+        // 其餘段落 (不變)
+        // ==========================================================
+        gsap.from(".crisis-card", { scrollTrigger: { trigger: ".crisis-cards-section", start: "top 70%" }, y: 50, opacity: 0, duration: 1, stagger: 0.2, ease: "power2.out" });
+
+        const policyTl = gsap.timeline({ scrollTrigger: { trigger: ".policy-section", start: "top top", end: "bottom bottom", pin: ".policy-sticky", anticipatePin: 1, toggleActions: "play none none reverse" }});
+        policyTl.to(".policy-text-1", { opacity: 1, y: 0, duration: 0.3 })
+                .to(".policy-text-2", { opacity: 1, y: 0, duration: 0.3 }, "+=0.1")
+                .to(".policy-card", { opacity: 1, y: 0, duration: 0.6, stagger: 0.2, ease: "power2.out" }, "+=0.2")
+                .to(".policy-text-but", { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, "+=0.3");
+
+        const challengeTimeline = gsap.timeline({ scrollTrigger: { trigger: "#exit-challenge", start: "top 75%", toggleActions: "play none none reverse" }});
+        challengeTimeline.to(".challenge-heading", { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" })
+                         .to(".challenge-card", { opacity: 1, y: 0, duration: 0.8, stagger: 0.2, ease: "power3.out" }, "-=0.3");
+
+        const realityTl = gsap.timeline({ scrollTrigger: { trigger: ".reality-section", start: "top top", end: "bottom bottom", pin: ".reality-sticky", anticipatePin: 1, toggleActions: "play none none reverse" }});
+        realityTl.to(".reality-heading", { opacity: 1, y: 0, duration: 0.8 })
+                 .to(".r-text-1", { opacity: 1, y: 0, duration: 0.6 }, "syncStart")
+                 .to(".r-text-2", { opacity: 1, y: 0, duration: 1 }, "syncStart")
+                 .to(".r-text-3", { opacity: 1, y: 0, duration: 1.4 }, "syncStart")
+                 .to(".r-text-4", { opacity: 1, y: 0, duration: 1.8 }, "syncStart")
+                 .to(".reality-content", { y: -20, duration: 1.5, ease: "power1.inOut" }, "syncStart")
+                 .to(".reality-section .scroll-indicator", { opacity: 1, duration: 1, ease: "power2.out" }, "+=1.5");
+
+        const incidentTl = gsap.timeline({ scrollTrigger: { trigger: "#incident-videos-section", start: "top top", end: "bottom bottom", scrub: 1.5, pin: ".incident-sticky", anticipatePin: 1 }});
+        incidentTl.to("#video-b", { opacity: 1, duration: 3, ease: "power1.inOut" }, "videoB")
+                  .to(".monitor-overlay", { opacity: 1, duration: 3 }, "videoB")
+                  .to("#video-b-subtitles", { opacity: 1, y: -10, duration: 1, ease: "power2.out" })
+                  .to(["#video-b", "#video-b-subtitles", ".monitor-overlay"], { opacity: 0, duration: 2, delay: 2 })
+                  .to("#video-c", { opacity: 1, duration: 2 }, "<")
+                  .to(".monitor-overlay", { opacity: 1, duration: 3 }, "<")
+                  .to("#video-c-subtitles", { opacity: 1, y: -10, duration: 1, ease: "power2.out" })
+                  .to({}, { duration: 2 }); 
+
+        const whyStayTl = gsap.timeline({ scrollTrigger: { trigger: "#why-stay-section", start: "top top", end: "bottom bottom", scrub: 1.5, pin: ".why-stay-sticky", anticipatePin: 1 }});
+        whyStayTl.fromTo(".why-heading", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 2 })
+                 .to(".why-heading", { y: -40, duration: 2, ease: "power2.inOut" }, "step1")
+                 .fromTo(".why-card-1", { opacity: 0, left: "50%", xPercent: -50, yPercent: -30 }, { opacity: 1, left: "50%", xPercent: -50, yPercent: -50, duration: 2 }, "step1")
+                 .to(".why-card-1", { left: "30%", duration: 2 }, "step2")
+                 .fromTo(".why-card-2", { opacity: 0, left: "70%", xPercent: -50, yPercent: -30 }, { opacity: 1, left: "70%", xPercent: -50, yPercent: -50, duration: 2 }, "step2")
+                 .to(".why-card-1", { left: "17%", duration: 2 }, "step3") 
+                 .to(".why-card-2", { left: "50%", duration: 2 }, "step3")
+                 .fromTo(".why-card-3", { opacity: 0, left: "83%", xPercent: -50, yPercent: -30 }, { opacity: 1, left: "83%", xPercent: -50, yPercent: -50, duration: 2 }, "step3")
+                 .to({}, { duration: 3 })
+                 .to([".why-heading", ".why-card-1", ".why-card-2", ".why-card-3"], { opacity: 0, y: -60, duration: 2 })
+                 .to({}, { duration: 2 });
+
+        const xingdaTl = gsap.timeline({ scrollTrigger: { trigger: "#xingda-section", start: "top top", end: "bottom bottom", scrub: 1.5, pin: ".xingda-sticky", anticipatePin: 1 }});
+        gsap.set(".xd-ship-left img, .xd-ship-right img", { rotationY: 0 });
+        xingdaTl.fromTo(".xingda-heading", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 2 })
+                .to([".xd-ship-left", ".xd-ship-right"], { opacity: 1, duration: 1.5 }, "shipsAppear")
+                .to(".xd-center-label", { opacity: 1, duration: 1.5 }, "shipsAppear")
+                .to({}, { duration: 1.5 })
+                .to(".xd-ship-left", { left: "15%", duration: 3, ease: "power1.inOut" }, "shipsMoveOut")
+                .to(".xd-ship-right", { left: "85%", duration: 3, ease: "power1.inOut" }, "shipsMoveOut")
+                .to(".xingda-dashed-line", { width: "70%", duration: 3, ease: "power1.inOut" }, "shipsMoveOut")
+                .to(".xd-center-label", { opacity: 0, duration: 1 }, "shipsMoveOut") 
+                .to([".xd-label-left", ".xd-label-right"], { opacity: 1, duration: 1.5 })
+                .to({}, { duration: 2 })
+                .to([".xd-ship-left img", ".xd-ship-right img"], { rotationY: 180, duration: 0.8 }, "shipsTurn")
+                .to(".xd-ship-left", { left: "50%", duration: 3, ease: "power2.inOut" }, "shipsMoveBack")
+                .to(".xd-ship-right", { left: "50%", duration: 3, ease: "power2.inOut" }, "shipsMoveBack")
+                .to(".xd-text-1", { opacity: 1, y: 0, duration: 1.5 }, "+=0.5")
+                .to(".xd-text-2", { opacity: 1, y: 0, duration: 1.5 })
+                .to(".xd-text-4", { opacity: 1, y: 0, duration: 1.5 })
+                .to(".xd-text-5", { opacity: 1, y: 0, duration: 1.5 })
+                .to(".xd-text-6", { opacity: 1, y: 0, duration: 1.5 })
+                .to([".xd-ship-left img", ".xd-ship-right img"], { rotationY: 0, duration: 0.1 }, "+=1")
+                .to({}, { duration: 4 })
+                .to(".xingda-sticky > *", { opacity: 0, y: -50, duration: 2 })
+                .to({}, { duration: 2 });
+
+        const qiedingTl = gsap.timeline({ scrollTrigger: { trigger: "#qieding-section", start: "top top", end: "bottom bottom", scrub: 1.5, pin: ".qieding-sticky", anticipatePin: 1 }});
+        qiedingTl.fromTo(".qieding-heading", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 2 })
+                 .to(".qieding-video-wrapper", { opacity: 1, y: 0, duration: 2 })
+                 .to({}, { duration: 4 })
+                 .to(".qieding-video-wrapper", { opacity: 0, y: -40, duration: 2 })
+                 .to(".qieding-video-wrapper", { display: "none", duration: 0 }) 
+                 .to(".qd2-text-1", { opacity: 1, y: 0, duration: 1.5 })
+                 .to(".qd2-text-2", { opacity: 1, y: 0, duration: 1.5 })
+                 .to(".qd2-text-5", { opacity: 1, y: 0, duration: 1.5 })
+                 .to(".qd2-text-6", { opacity: 1, y: 0, duration: 1.5 })
+                 .to(".qd2-text-7", { opacity: 1, y: 0, duration: 1.5 })
+                 .to({}, { duration: 5 })
+                 .to(".qieding-sticky > *", { opacity: 0, y: -40, duration: 2 })
+                 .to({}, { duration: 2 });
+
+        const endpointTl = gsap.timeline({ scrollTrigger: { trigger: "#endpoint-section", start: "top top", end: "bottom bottom", scrub: 1.5, pin: ".endpoint-sticky", anticipatePin: 1 }});
+        endpointTl.fromTo(".endpoint-heading", { opacity: 0, top: "50%" }, { opacity: 1, top: "50%", duration: 2 })
+                  .to(".endpoint-heading", { top: "15%", duration: 2 })
+                  .to(".ep-text-1", { opacity: 1, y: 0, duration: 1.5 })
+                  .to(".ep-text-2", { opacity: 1, y: 0, duration: 1.5 })
+                  .to(".ep-text-3", { opacity: 1, y: 0, duration: 1.5 })
+                  .to(".ep-text-4", { opacity: 1, y: 0, duration: 1.5 })
+                  .to({}, { duration: 4 })
+                  .to([".endpoint-heading", ".endpoint-content"], { opacity: 0, y: -50, duration: 2 })
+                  .to([".endpoint-heading", ".endpoint-content"], { display: "none", duration: 0 })
+                  .fromTo(".endpoint-conclusion", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 2.5 })
+                  .to({}, { duration: 1 })
+                  .fromTo(".ep-outro-1", { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 2 })
+                  .to(".ep-outro-1", { opacity: 0, y: -20, duration: 1.5 })
+                  .fromTo(".ep-outro-2", { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 2 })
+                  .to(".ep-outro-2", { opacity: 0, y: -20, duration: 1.5 })
+                  .fromTo(".ep-outro-3", { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 2.5 })
+                  .to({}, { duration: 3 })
+                  .to(".ep-outro-3", { opacity: 0, y: -40, duration: 2 })
+                  .to({}, { duration: 2 });
+
+        ScrollTrigger.sort();
+        ScrollTrigger.refresh();
+    </script>
+</body>
+</html>
