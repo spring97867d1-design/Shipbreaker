@@ -827,14 +827,16 @@ h2 { margin: 0; font-size: clamp(28px, 4vw, 48px); line-height: 1.25; text-align
 .article-media-placeholder {
     flex: 1;
     width: 100%;
-    min-height: 350px;
-    border: 2px dashed rgba(255, 255, 255, 0.15); /* 虛線框作為預留位提示 */
+    /* 移除 min-height，讓它能貼合真實圖片的原始高度 */
+    border: 2px dashed rgba(255, 255, 255, 0.15); 
     border-radius: var(--radius-lg);
     background: rgba(255, 255, 255, 0.02);
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    position: relative; /* 確保提示文字定位正常 */
+    flex-direction: column; /* ★ 加上這行：讓圖片跟人名上下排列 */
 }
 
 .article-media-placeholder::after {
@@ -842,16 +844,43 @@ h2 { margin: 0; font-size: clamp(28px, 4vw, 48px); line-height: 1.25; text-align
     color: var(--muted);
     font-size: 16px;
     letter-spacing: 2px;
+    position: absolute; /* 讓文字浮在底層，不影響圖片排版 */
+    z-index: 0;
 }
 
-/* 之後你放進去的影片或圖片，會自動符合這個框框的大小 */
+/* 之後放進去的影片或圖片，會自動符合這個框框的大小 */
 .article-media-placeholder img,
 .article-media-placeholder video {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto; /* 改為 auto，維持圖片原始比例不變形 */
+    object-fit: contain; /* 確保完整顯示不裁切 */
     display: block;
+    border-radius: var(--radius-lg);
+    z-index: 2; /* 蓋住底層的提示文字 */
 }
+
+/* ★ 神奇小技巧：當放入真正的圖片/影片時，自動隱藏虛線外框與背景 */
+.article-media-placeholder:has(img),
+.article-media-placeholder:has(video) {
+    border: none;
+    background: transparent;
+}
+
+
+/* 新增：圖片下方的小人名/圖說樣式 */
+.photo-caption {
+    width: 100%;
+    text-align: right; /* 通常照片來源或人名會靠右下角，若你想置中可以改成 center */
+    font-size: 14px; /* 字體縮小，不搶內文焦點 */
+    color: var(--muted); /* 使用柔和的灰色 */
+    margin-top: 10px; /* 距離上方圖片一點點空間 */
+    padding-right: 10px; /* 避免字太貼齊右邊邊緣 */
+    letter-spacing: 1px;
+    z-index: 2; /* 確保文字浮在最上層不被遮擋 */
+}
+
+
+
 
 /* 手機版：讓文字全部都在上方，圖片在下方 */
 @media (max-width: 968px) {
@@ -1131,6 +1160,42 @@ h2 { margin: 0; font-size: clamp(28px, 4vw, 48px); line-height: 1.25; text-align
     background-color: #000;
     transition: opacity 0.3s ease;
 }
+
+
+/* --- 右側區塊：單支影片外框設計 --- */
+.council-video-wrapper {
+    position: relative;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.02);
+    border: 2px dashed rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    aspect-ratio: 16 / 9; /* 維持標準 16:9 影片比例 */
+}
+
+.council-video-wrapper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 自動填滿外框，若不希望影片邊緣被稍微裁切，可以改成 contain */
+    z-index: 2;
+    background-color: #000;
+}
+
+/* 當放上真實影片時，自動隱藏背後的虛線框 */
+.council-video-wrapper:has(video) {
+    border: none;
+    background: transparent;
+}
+
+
+
 
 /* --- 手機版 / 平板版 適應 --- */
 @media (max-width: 968px) {
