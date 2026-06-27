@@ -210,7 +210,7 @@
                 <div class="timeline-date">1943</div>
                 <div class="timeline-content">
                     　　美軍的跳島戰術，順利收復南太平洋諸島，當時台灣是日本的殖民地。
-                    <img src="../images/ChatGPT/1943_Firefly_gpt-image_參考圖片風格，生成左邊是美國大兵站在島上，地上插著美國旗子，示意收復島嶼，右邊是台灣地圖，上面是幾個日本兵，也有日本的旗子，當日台灣是日本的殖民地，不要文字 622534.webp" class="timeline-img" alt="1943示意圖">
+                    <img src="../images/ChatGPT/1943_Firefly_gpt-image_美國大兵站在島上_ 622534.webp" class="timeline-img" alt="1943示意圖">
                     <div class="photo-caption">AI 示意圖</div>
                 </div>
             </div>
@@ -751,23 +751,31 @@
         let isMobile = window.innerWidth <= 768;
         
         // foodMoveY 控制往下移動的距離：手機版文字長，桌子往下推 24vh；電腦版推 28vh
-        let foodMoveY = isMobile ? "5vh" : "28vh"; 
+        let foodMoveY = isMobile ? "20vh" : "28vh"; 
         // foodScale 控制桌子縮小的比例：手機版縮小至 75%；電腦版縮小至 65%
         let foodScale = isMobile ? 0.35 : 0.65;     
 
         // 窗框放大 (保留你原本的設定)
         introTl.to(".intro-png-frame", { scale: 80, ease: "power2.in", duration: 4 }, "zoomStart");
         
-        // 【修改】餐桌套用變數，動態縮小並往下移動
-        introTl.to(".scene-food", { 
-            scale: foodScale, 
-            y: foodMoveY, 
-            xPercent: -50, 
-            yPercent: -20, // 這行非常重要，配合 CSS 的絕對置中，確保基準點不跑掉
-            transformOrigin: "center center", 
-            duration: 4, 
-            ease: "power2.out" 
-        }, "zoomStart");
+        // 改用 fromTo，明確定義初始的 xPercent 與 yPercent
+        introTl.fromTo(".scene-food", 
+            { 
+                xPercent: -50, 
+                yPercent: -10,  // 明確設定起點是絕對置中
+                y: 0,
+                scale: 1
+            }, 
+            { 
+                scale: foodScale, 
+                y: foodMoveY, 
+                xPercent: -50, 
+                yPercent: -20, 
+                transformOrigin: "center center", 
+                duration: 4, 
+                ease: "power2.out" 
+            }, "zoomStart"
+        );
         
         // 左右兩邊的家人從畫面兩側外滑入 (終點 x: "0" 代表停在上面 CSS 設定的 left/right 位置)
         introTl.fromTo(".scene-family-left", { x: "-50vw", opacity: 0 }, { x: "0", opacity: 1, duration: 3.5, ease: "power2.out" }, "zoomStart+=0.5");
