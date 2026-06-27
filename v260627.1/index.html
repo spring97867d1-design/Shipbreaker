@@ -382,6 +382,7 @@
                     <div class="article-media-placeholder">
                     <img src="../images/still/待卸貨漁船.jpg" alt="待卸貨漁船">
                     <!-- <div class="photo-caption">待卸貨漁船</div> -->
+                     <div class="photo-caption">前鎮漁港</div>
                 </div>
                 </div>
                 <div class="article-text">
@@ -397,6 +398,7 @@
                 <div class="article-media-placeholder">
                     <img src="../images/still/前鎮漁港廢船-02.743.jpg" alt="前鎮漁港廢船">
                     <!-- <div class="photo-caption">前鎮漁港廢船</div> -->
+                     <div class="photo-caption">前鎮漁港</div>
                 </div>
             </div>
 
@@ -405,6 +407,7 @@
                 <div class="article-media-placeholder">
                    <img src="../images/受訪者/1150115 旗津拆船餘波盪漾  00_02_31_18.Still004.jpg" alt="協調會">
                     <!-- <div class="photo-caption">協調會</div> -->
+                     <div class="photo-caption">協調會</div>
                 </div>
                 <div class="article-text">
                     <p>　　但在大仁宮事件之後，台灣沒有新的拆船專區，這80艘老船，一部分到了旗津的拆船廠進行拆解，卻拆出地方居民的恐懼與憤怒。「(拆船廠)離我們很近，它拆船這樣敲、震動，房子是不是都跟著震動」，居民拉開自家窗戶，向外看去就是拆船廠，緊鄰著拆船廠，要面對的不僅只是噪音跟震動，「甚至有的地方裂到都會滲水，連地板也裂得很嚴重，我們怕我們的人身在裡面有危險的問題。」</p>
@@ -509,12 +512,14 @@
         <div class="container dead-ships-container">
             
             <!-- 左側區塊：單張圖片 -->
-            <div class="dead-ships-left-col slide-up-element">
+            <div class="dead-ships-left-col slide-up-element" style="flex-direction: column;">
                 <div class="dead-ships-img-wrapper">
                     <!-- 若有真實圖片，替換 src 即可，會自動覆蓋虛線與預留文字 -->
                     <img src="../images/受訪者/1150115 旗津拆船餘波盪漾  00_01_39_05.Still003.jpg" alt="死船與協調會畫面" onerror="this.style.opacity=0">
                     <!-- <div class="placeholder-text">圖片預留位置</div> -->
                 </div>
+                <!-- ▼▼▼ 新增的人名圖說 ▼▼▼ -->
+                <div class="photo-caption">台灣區鮪魚公會總幹事 林涵宇</div>
             </div>
 
             <!-- 右側區塊：文字 -->
@@ -542,8 +547,8 @@
             <div class="policy-conflict-left-col slide-up-element">
                 <div class="policy-conflict-text">
                     <p>  　　這場政策對撞，戳破了台灣環境治理最諷刺的現實：體制的真空，並不會因為換了一個港灣就自動消失。中央只要造船公司具有拆船營業項目就核准發照，後續卻缺乏對每一家業者污染防治的實質監督。</p>
-                    <p>  　　我們能造出遨遊三大洋的萬噸巨輪、名震國際的頂級遊艇，卻在產業藍圖的最後一哩路上留下了空白。當國際配額的限縮迎來集體大減船潮，這個長年「只管建、不管拆」的殘缺產業鏈終於引來反噬。</p>
-                    <p>  　　一位不願具名的海洋事務體系公職人員表示，目前國內符合國際綠色法規的拆船廠僅有3家。而引發爭議的旗津幾家拆船廠，土炮式的拆法則是：「明明規定拆船的時候就必須要離地，但是就我們所知，它都是利用潮汐的漲潮，把船拉上來，等於一半的船身在陸地，一半的船身在海上。」</p>
+                    <p>  　　我們能造出遨遊三大洋的萬噸巨輪、名震國際的頂級遊艇，卻在產業藍圖的最後一哩路上留下了空白。當國際配額的限縮迎來集體大減船潮，這個長年<strong style="color:var(--danger);">「只管建、不管拆」</strong>的殘缺產業鏈終於引來反噬。</p>
+                    <p>  　　一位不願具名的海洋事務體系公職人員表示，目前國內符合國際綠色法規的拆船廠僅有<strong style="color:var(--danger);">3家</strong>。而引發爭議的旗津幾家拆船廠，土炮式的拆法則是：<strong style="color:var(--danger);">「明明規定拆船的時候就必須要離地，但是就我們所知，它都是利用潮汐的漲潮，把船拉上來，等於一半的船身在陸地，一半的船身在海上。」</strong></p>
                     <p>  　　「所以在拆的時候就同步造成陸地跟海洋的污染，不論是地方的環保局或是中央都沒有人來做拆船過程，是否符合規定的一些監督。」接受旗津居民陳情的市議員陳麗娜直言問題的核心。</p>
                 </div>
             </div>
@@ -740,9 +745,9 @@
         let isMobile = window.innerWidth <= 768;
         
         // foodMoveY 控制往下移動的距離：手機版文字長，桌子往下推 24vh；電腦版推 28vh
-        let foodMoveY = isMobile ? "24vh" : "28vh"; 
+        let foodMoveY = isMobile ? "25vh" : "28vh"; 
         // foodScale 控制桌子縮小的比例：手機版縮小至 75%；電腦版縮小至 65%
-        let foodScale = isMobile ? 0.75 : 0.65;     
+        let foodScale = isMobile ? 0.35 : 0.65;     
 
         // 窗框放大 (保留你原本的設定)
         introTl.to(".intro-png-frame", { scale: 80, ease: "power2.in", duration: 4 }, "zoomStart");
@@ -752,7 +757,7 @@
             scale: foodScale, 
             y: foodMoveY, 
             xPercent: -50, 
-            yPercent: -50, // 這行非常重要，配合 CSS 的絕對置中，確保基準點不跑掉
+            yPercent: -20, // 這行非常重要，配合 CSS 的絕對置中，確保基準點不跑掉
             transformOrigin: "center center", 
             duration: 4, 
             ease: "power2.out" 
@@ -1039,69 +1044,89 @@
         });
 
 
+
+
         // ==========================================================
-        // 大仁宮時間軸 (包含爆炸、內文與影片浮現、歷史照片輪播)
+        // 大仁宮時間軸 (使用 matchMedia 區分電腦版與手機版動畫)
         // ==========================================================
-        const dajingongTl = gsap.timeline({ 
-            scrollTrigger: { 
-                trigger: ".dajingong-section", 
-                start: "top top", 
-                end: "bottom bottom", 
-                scrub: 1.5, 
-                pin: ".dajingong-sticky", 
-                anticipatePin: 1 
-            }
+        let mm = gsap.matchMedia();
+
+        // 💻 【電腦版動畫】維持原樣：文字與影片左右同時出現
+        mm.add("(min-width: 969px)", () => {
+            gsap.set(".dajingong-heading", { y: "15vh", scale: 1.2, opacity: 0 });
+            gsap.set(".dajingong-texts p", { opacity: 0, y: 20 });
+            gsap.set(".dajingong-video-right", { opacity: 0, x: 40 });
+
+            const dajingongTl = gsap.timeline({
+                scrollTrigger: { trigger: ".dajingong-section", start: "top top", end: "bottom bottom", scrub: 1.5, pin: ".dajingong-sticky", anticipatePin: 1 }
+            });
+
+            dajingongTl
+                .to(".dajingong-heading", { opacity: 1, duration: 1.5, ease: "power2.out", onStart: () => document.querySelector(".dajingong-heading").classList.add("is-exploding"), onReverseComplete: () => document.querySelector(".dajingong-heading").classList.remove("is-exploding") })
+                .to("#explosion-video", { opacity: 0.9, duration: 0.5 }, "<")
+                .to({}, { duration: 1 })
+                .to(".dajingong-heading", { y: "-2vh", scale: 1, duration: 2.5, ease: "power2.inOut", onStart: () => document.querySelector(".dajingong-heading").classList.remove("is-exploding") })
+                .to("#explosion-video", { opacity: 0.2, duration: 2 }, "<")
+                .to(".dajingong-texts p", { opacity: 1, y: 0, duration: 1.5, ease: "power2.out", stagger: 0.3 }, "<0.5")
+                .to(".dajingong-video-right", { opacity: 1, x: 0, duration: 1.5, ease: "power2.out" }, "<0.5")
+                .to({}, { duration: 3 })
+                .to([".dajingong-texts p", ".dajingong-video-right"], { opacity: 0, y: -40, duration: 2 }, "textOut")
+                .to(".dajingong-heading", { opacity: 0, y: -80, duration: 2 }, "textOut")
+                .to(".dj-bg-slideshow", { opacity: 1, duration: 2, ease: "none" }, "bgChange")
+                .to(".dj-dots-container", { opacity: 1, duration: 2, ease: "none" }, "bgChange")
+                .to("#explosion-video", { opacity: 0, duration: 1 }, "bgChange")
+                .to(".dj-history-text", { opacity: 1, duration: 1 }, "bgChange+=1")
+                .to({}, { duration: 4 })
+                .to(".dj-history-text", { opacity: 0, y: -20, duration: 1 }, "textDisappear")
+                .to([".dj-bg-slideshow", ".dj-dots-container"], { opacity: 0, duration: 2 }, "textDisappear")
+                .to({}, { duration: 1 });
         });
 
-        // 初始設定
-        gsap.set(".dajingong-heading", { y: "15vh", scale: 1.2, opacity: 0 });
-        gsap.set(".dajingong-texts p", { opacity: 0, y: 20 }); 
-        gsap.set(".dajingong-video-right", { opacity: 0, x: 40 }); // 設定影片的初始隱藏狀態
+        // 📱 【手機版動畫】分頁播放：標題出 ➔ 文字出 ➔ 文字消失 ➔ 影片出
+        mm.add("(max-width: 968px)", () => {
+            gsap.set(".dajingong-heading", { y: "12vh", scale: 1.2, opacity: 0 });
+            gsap.set(".dajingong-texts p", { opacity: 0, y: 20 });
+            gsap.set(".dajingong-video-right", { opacity: 0, y: 30, x: 0 }); // 手機版影片改為從下方浮現
 
-        dajingongTl
-            // [階段 1] 標題出現在畫面正中央並觸發狂暴震動，同步顯示爆炸效果
-            .to(".dajingong-heading", { 
-                opacity: 1, 
-                duration: 1.5,
-                ease: "power2.out",
-                onStart: () => document.querySelector(".dajingong-heading").classList.add("is-exploding"),
-                onReverseComplete: () => document.querySelector(".dajingong-heading").classList.remove("is-exploding")
-            })
-            .to("#explosion-video", { opacity: 0.9, duration: 0.5 }, "<")
-            .to({}, { duration: 1 })
-            
-            // [階段 2] 標題上移，左側內文與右側影片平滑浮現
-            .to(".dajingong-heading", { 
-                y: "-2vh", 
-                scale: 1, 
-                duration: 2.5, 
-                ease: "power2.inOut",
-                onStart: () => document.querySelector(".dajingong-heading").classList.remove("is-exploding")
-            })
-            .to("#explosion-video", { opacity: 0.2, duration: 2 }, "<")
-            .to(".dajingong-texts p", { opacity: 1, y: 0, duration: 1.5, ease: "power2.out", stagger: 0.3 }, "<0.5") // 左邊段落浮現
-            .to(".dajingong-video-right", { opacity: 1, x: 0, duration: 1.5, ease: "power2.out" }, "<0.5") // 右邊影片浮現
-            
-            // 預留更長的捲動空間時間，讓使用者看完文字與點擊播放影片
-            .to({}, { duration: 3 })
-            
-            // [階段 3] 左側文字、右側影片與大標題同時往上離開並變透明
-            .to([".dajingong-texts p", ".dajingong-video-right"], { opacity: 0, y: -40, duration: 2 }, "textOut")
-            .to(".dajingong-heading", { opacity: 0, y: -80, duration: 2 }, "textOut") 
-            
-            // [階段 4] 退場後，歷史照片輪播與點點淡入
-            .to(".dj-bg-slideshow", { opacity: 1, duration: 2, ease: "none" }, "bgChange")
-            .to(".dj-dots-container", { opacity: 1, duration: 2, ease: "none" }, "bgChange")
-            .to("#explosion-video", { opacity: 0, duration: 1 }, "bgChange") // 爆炸特效完全消失
-            
-            // [階段 5] 紅色提示文字浮現，停留一下後退場
-            .to(".dj-history-text", { opacity: 1, duration: 1 }, "bgChange+=1")
-            .to({}, { duration: 4 }) 
-            .to(".dj-history-text", { opacity: 0, y: -20, duration: 1 }, "textDisappear")
-            
-            // 照片輪播牆與點點退場，結束這一段
-            .to([".dj-bg-slideshow", ".dj-dots-container"], { opacity: 0, duration: 2 }, "textDisappear")
-            .to({}, { duration: 1 });
+            const dajingongTlMobile = gsap.timeline({
+                scrollTrigger: { trigger: ".dajingong-section", start: "top top", end: "bottom bottom", scrub: 1.5, pin: ".dajingong-sticky", anticipatePin: 1 }
+            });
+
+            dajingongTlMobile
+                // 階段 1: 爆炸與標題
+                .to(".dajingong-heading", { opacity: 1, duration: 1.5, ease: "power2.out", onStart: () => document.querySelector(".dajingong-heading").classList.add("is-exploding"), onReverseComplete: () => document.querySelector(".dajingong-heading").classList.remove("is-exploding") })
+                .to("#explosion-video", { opacity: 0.9, duration: 0.5 }, "<")
+                .to({}, { duration: 1 })
+                
+                // 階段 2: 標題上移，【第一頁：只出現文字】
+                .to(".dajingong-heading", { y: "0vh", scale: 1, duration: 2.5, ease: "power2.inOut", onStart: () => document.querySelector(".dajingong-heading").classList.remove("is-exploding") })
+                .to("#explosion-video", { opacity: 0.2, duration: 2 }, "<")
+                .to(".dajingong-texts p", { opacity: 1, y: 0, duration: 1.5, ease: "power2.out", stagger: 0.3 }, "<0.5")
+                .to({}, { duration: 3.5 }) // 留長一點的時間讓讀者閱讀文字
+                
+                // 階段 3: 【換頁過場：文字消失，影片進場】
+                .to(".dajingong-texts p", { opacity: 0, y: -20, duration: 1.5 }, "textGoesOut")
+                .to(".dajingong-video-right", { opacity: 1, y: 0, duration: 1.5, ease: "power2.out" }, "textGoesOut+=0.5")
+                .to({}, { duration: 3.5 }) // 讓讀者看影片
+                
+                // 階段 4: 標題與影片共同退場
+                .to(".dajingong-video-right", { opacity: 0, y: -40, duration: 2 }, "videoOut")
+                .to(".dajingong-heading", { opacity: 0, y: -80, duration: 2 }, "videoOut")
+                
+                // 階段 5: 歷史照片輪播 (與電腦版相同)
+                .to(".dj-bg-slideshow", { opacity: 1, duration: 2, ease: "none" }, "bgChange")
+                .to(".dj-dots-container", { opacity: 1, duration: 2, ease: "none" }, "bgChange")
+                .to("#explosion-video", { opacity: 0, duration: 1 }, "bgChange")
+                .to(".dj-history-text", { opacity: 1, duration: 1 }, "bgChange+=1")
+                .to({}, { duration: 4 })
+                .to(".dj-history-text", { opacity: 0, y: -20, duration: 1 }, "textDisappear")
+                .to([".dj-bg-slideshow", ".dj-dots-container"], { opacity: 0, duration: 2 }, "textDisappear")
+                .to({}, { duration: 1 });
+        });
+
+
+
+
 
 
 
