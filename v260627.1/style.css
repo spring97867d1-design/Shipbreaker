@@ -272,7 +272,7 @@ h2 { margin: 0; font-size: clamp(28px, 4vw, 48px); line-height: 1.25; text-align
 @media (max-width: 768px) {
     .scene-food {
         width: 125vw; /* 手機版桌子放大，填滿窗洞 */
-        top: 30%;
+        top: 50%;
     }
     .scene-text-1 {
         top: 10%; /* 手機版文字更往上靠 */
@@ -518,7 +518,7 @@ h2 { margin: 0; font-size: clamp(28px, 4vw, 48px); line-height: 1.25; text-align
         margin-bottom: 10px; 
     }
     /* 調整文字大小，適應手機螢幕 */
-    .scene-text-content p { font-size: clamp(16px, 4.5vw, 20px); line-height: 1.6; }
+    .scene-text-content p { font-size: clamp(16px, 4.5vw, 20px); line-height: 2.4; }
     .scene-source { font-size: 12px; margin-top: 10px; }
 
     /* 2. 人類圖片：排左下方，並將尺寸大幅縮小 */
