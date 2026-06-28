@@ -134,7 +134,7 @@
             <div id="video-carousel" class="bg-carousel-container"></div>
 
             <div class="map-layer">
-                <img class="world-map-img" src="../images/ChatGPT/ChatGPT Image 2026年6月5日 下午12_01_51_wordMap.webp" alt="World Map">
+                <img class="world-map-img" src="../images/ChatGPT/ChatGPT Image 2026年6月5日 下午12_01_51_wordMap_BK80.webp" alt="World Map">
                 <div id="boats-container"></div>
             </div>
             
@@ -728,8 +728,6 @@
 
 
         gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
-
- 
  
  
  
@@ -948,62 +946,6 @@
 
 
 
-
-        // ==========================================================
-        // 1-2. 世界地圖與產值動畫 (Map Timeline - 往後移)
-        // ==========================================================
-        const boatContainer = document.getElementById('boats-container');
-        
-        // 建立 80 艘船，並直接亂數分配到指定位置...
-        for (let i = 0; i < 80; i++) {
-            let boat = document.createElement('img');
-            boat.src = '../images/PNG/ChatGPT Image 2026年6月5日 上午09_50_34_左.png'; 
-            boat.className = 'map-boat';
-            
-            let zone = i % 7;
-            let targetX, targetY;
-            switch(zone) {
-                case 0: targetX = gsap.utils.random(-38, -32); targetY = gsap.utils.random(-20, -15); break;
-                case 1: targetX = gsap.utils.random(-46, -39); targetY = gsap.utils.random(8, 35); break;
-                case 2: targetX = gsap.utils.random(-28, -16); targetY = gsap.utils.random(5, 30); break;
-                case 3: targetX = gsap.utils.random(-1, 17); targetY = gsap.utils.random(-25, -1); break;
-                case 4: targetX = gsap.utils.random(2, 29); targetY = gsap.utils.random(10, 33); break;
-                case 5: targetX = gsap.utils.random(35, 49); targetY = gsap.utils.random(-20, -2); break;
-                case 6: targetX = gsap.utils.random(40, 48); targetY = gsap.utils.random(20, 35); break;
-            }
-            boat.style.transform = `translate(calc(-50% + ${targetX}vw), calc(-50% + ${targetY}vh))`;
-            boatContainer.appendChild(boat);
-        }
-
-        // ----------------------------------------------------------
-        // [新增] 1. 背景視差滾動：地圖與船會隨著滑鼠往下滾，緩慢往上滑動
-        // ----------------------------------------------------------
-        gsap.to(".map-layer", {
-            yPercent: -15, // 向上微微移動 15% (因為 CSS 高度已加長，所以不會穿幫)
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".map-section",
-                start: "top bottom",
-                end: "bottom top",
-                scrub: true // 跟隨滑鼠滾動的進度
-            }
-        });
-
-        // ----------------------------------------------------------
-        // [新增] 2. 文字獨立進場：當區塊進入畫面時，文字自動浮現
-        // ----------------------------------------------------------
-        gsap.to(".map-content-container", {
-            opacity: 1,
-            y: 0,
-            duration: 1.5,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: ".map-section",
-                start: "top 65%", // 當區塊頂部碰到畫面 65% 的位置時觸發
-                toggleActions: "play none none reverse" // 往下滾播放，往上滾退回隱藏
-            }
-        });
-        
 
 
 
